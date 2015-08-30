@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.Hidden("view", @"~\Views\Home\Index.cshtml");
+
+<div class="jumbotron">
+    <h1>Haptic Theatre</h1>
+    <h2>Vibings Controller</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Live Control</h2>
+        <p>
+            Put indicators and MRU controls here
+        </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Open Live Controller</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Modes</h2>
+        <p>Put indicators and MRU controls here
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Open Mode Library</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Test and Develoment</h2>
+        <p>Put indicators and MRU controls here</p>
+        <p>@Html.ActionLink("Open Test and Development", "Index", "TestandDevelopment", null, new {@class="btn btn-default"})</p>
+    </div>
+</div>

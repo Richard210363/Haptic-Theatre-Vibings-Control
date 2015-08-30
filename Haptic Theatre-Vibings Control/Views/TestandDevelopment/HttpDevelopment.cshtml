@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Development";
+}
+
+@Html.Hidden("view", @"~\Views\TestandDevelopment\HttpDevelopment.cshtml");
+
+<div class="jumbotron">
+    <h1>Http Development</h1>
+    <h2>Development</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Test Area 1</h2>
+        <p></p>
+        <p></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Test Area 1</h2>
+        <p>Stuff goes hare</p>
+        <p></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Test Area 1</h2>
+        <p>Stuff goes hare</p>
+        <p>@Html.ActionLink("Send Http Command", "SendHTTPMessage", "TestandDevelopment", null, new { @class = "btn btn-default" })</p>
+
+    </div>
+</div>
+
