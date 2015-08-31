@@ -1,0 +1,30 @@
+﻿
+@{
+    @Html.Hidden("view", @"~\Views\TestandDevelopment\Index.cshtml")
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="jumbotron" style="border-color:#66cdaa">
+    <h1>Development</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Networks</h2>
+        <p>Development area for networking</p>
+        <p>@Html.ActionLink("Http Development", "HttpDevelopment", "TestandDevelopment", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Test Area 1</h2>
+        <p>Stuff goes hare</p>
+        <p>@Html.ActionLink("Do Stuff", "Index", "TestandDevelopment", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Test Area 1</h2>
+        <p>Stuff goes hare</p>
+        <p>@Html.ActionLink("Do Stuff", "Index", "TestandDevelopment", null, new { @class = "btn btn-default" })</p>
+    </div>
+</div>
+

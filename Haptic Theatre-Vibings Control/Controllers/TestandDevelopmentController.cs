@@ -17,9 +17,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Haptic_Theatre_Vibings_Control.Classes;
+using Haptic_Theatre_Vibings_Control.Models;
 
 namespace Haptic_Theatre_Vibings_Control.Controllers
 {
@@ -40,7 +42,9 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         /// <returns></returns>
         public ActionResult HttpDevelopment()
         {
-            return View();
+            HttpViewModel httpViewModel = new HttpViewModel();
+            httpViewModel.HttpRequestType = HttpRequestType.Get;
+            return View(httpViewModel);
         }
 
         #region Http Development
@@ -48,16 +52,35 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         /// <summary>
         /// Send an Http message
         /// </summary>
+        /// <param name="httpViewModel"></param>
         /// <returns></returns>
-        public ActionResult SendHTTPMessage()
+        /// <remarks>
+        /// Test URLs
+        /// http://httpbin.org/robots.txt
+        /// http://httpbin.org/get
+        /// http://httpbin.org/post
+        /// </remarks>
+        public ActionResult SendHttpMessage(HttpViewModel httpViewModel)
         {
-            //create the constructor with post type and few data
+            if (httpViewModel == null) throw new ArgumentNullException(nameof(HttpViewModel));
+
+            string response="";
+
             HTTPManager httpManager = new HTTPManager();
-            var response = httpManager.sendRequest("http://www.bbc.co.uk/news");
 
-            //todo Pick up the response and put into a text box 
+            if (httpViewModel.HttpRequestType == HttpRequestType.Get)
+            {
+                response = httpManager.SendGetRequest(httpViewModel.HttpRequest);
+            }
+            if (httpViewModel.HttpRequestType == HttpRequestType.Post)
+            {
+                response = httpManager.SendPostRequest(httpViewModel.HttpRequest);
+            }
 
-            return View();
+            httpViewModel.HttpResponse = response;
+            Thread.Sleep(2000);
+
+            return PartialView("_HttpResponse",httpViewModel);
         }
 
         #endregion

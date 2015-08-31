@@ -1,31 +1,72 @@
-﻿
+﻿@using Haptic_Theatre_Vibings_Control.Classes
+@model Haptic_Theatre_Vibings_Control.Models.HttpViewModel
+
 @{
     ViewBag.Title = "Development";
 }
 
-@Html.Hidden("view", @"~\Views\TestandDevelopment\HttpDevelopment.cshtml");
+@Html.Hidden("view", @"~\Views\TestandDevelopment\HttpDevelopment.cshtml")
 
-<div class="jumbotron">
+<div class="jumbotron" style="border-color:#66cdaa">
     <h1>Http Development</h1>
-    <h2>Development</h2>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Test Area 1</h2>
-        <p></p>
-        <p></p>
-    </div>
+        <h3>Send Http TCP/IP Get and Post Commands</h3>
+            <h4>Request</h4>
+                <div>
+                    @*@using (Html.BeginForm("SendHttpMessage", "TestandDevelopment"))*@
+                    @using (Html.BeginForm())
+                    {
+                        @Html.TextBoxFor(m => m.HttpRequest, new { @class = "form-control" })
+                        @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Get, new { @Id = "get" })
+                        <label for="get">Get</label>
+                        @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Post, new { @Id = "post" })
+                        <label for="post">Post</label>
+                        <p></p>
+                        <input type="submit" value="Send Request"/>
+                    }
+                </div>
+                <p>
+                    <div id="resultPane">
+                        @Html.Partial("_HttpResponse", Model)
+                    </div>
+                </p>
+</div>
     <div class="col-md-4">
-        <h2>Test Area 1</h2>
+        <h3>Test Area 1</h3>
         <p>Stuff goes hare</p>
         <p></p>
     </div>
     <div class="col-md-4">
-        <h2>Test Area 1</h2>
+        <h3>Test Area 1</h3>
         <p>Stuff goes hare</p>
-        <p>@Html.ActionLink("Send Http Command", "SendHTTPMessage", "TestandDevelopment", null, new { @class = "btn btn-default" })</p>
-
+        <p></p>
     </div>
 </div>
+
+@Scripts.Render("~/bundles/jquery")
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('form').submit(function () {
+            $('#resultPane').html("<div class='spinner'><div class='dot1'></div><div class='dot2'></div></div>");
+                $.ajax({
+                    url: "@Url.Action("SendHttpMessage", "TestandDevelopment")",
+                    type: "POST",
+                    data: $(this).serialize(),
+                    datatype: "text",
+                    success: function (data) {
+                        $('#resultPane').html(data);
+                    }
+                });
+            return false;
+        });
+
+    });
+
+</script>
 

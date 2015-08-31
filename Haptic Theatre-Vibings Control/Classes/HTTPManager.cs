@@ -26,9 +26,17 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 {
     public class HTTPManager
     {
-        public string sendRequest(string ip)
+        public string SendGetRequest(string ip)
         {
-            WebRequest webRequest = new WebRequest(ip, "POST", "a=value1&b=value2");
+            WebRequest webRequest = new WebRequest(ip, "GET");
+            var response = webRequest.GetResponse();
+
+            return response;
+        }
+
+        public string SendPostRequest(string ip)
+        {
+            WebRequest webRequest = new WebRequest(ip, "POST");
             var response = webRequest.GetResponse();
 
             return response;
