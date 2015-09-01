@@ -24,7 +24,8 @@ namespace Haptic_Theatre_Vibings_Control.Models
         public string HttpRequest { get; set; }
         public string HttpResponse { get; set; }
         public string HttpRequestType { get; set; }
-        
+        public string HttpPortNumber { get; set; }
+
         public HttpViewModel()
         {
         }

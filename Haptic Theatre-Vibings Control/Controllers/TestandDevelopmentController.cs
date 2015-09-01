@@ -43,7 +43,10 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         public ActionResult HttpDevelopment()
         {
             HttpViewModel httpViewModel = new HttpViewModel();
+
+            //set defaults
             httpViewModel.HttpRequestType = HttpRequestType.Get;
+            httpViewModel.HttpPortNumber = "80";
             return View(httpViewModel);
         }
 

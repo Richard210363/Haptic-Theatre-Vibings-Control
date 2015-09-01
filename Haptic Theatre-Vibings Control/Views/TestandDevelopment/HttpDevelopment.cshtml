@@ -7,38 +7,75 @@
 
 @Html.Hidden("view", @"~\Views\TestandDevelopment\HttpDevelopment.cshtml")
 
-<div class="jumbotron" style="border-color:#66cdaa">
+<div class="jumbotron">
     <h1>Http Development</h1>
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("Development", "Index", "TestandDevelopment")</li>
+        <li class="active">Http Development</li>
+    </ol>
 </div>
 
 <div class="row">
+    @*Area 1  *@
     <div class="col-md-4">
-        <h3>Send Http TCP/IP Get and Post Commands</h3>
-            <h4>Request</h4>
-                <div>
-                    @*@using (Html.BeginForm("SendHttpMessage", "TestandDevelopment"))*@
-                    @using (Html.BeginForm())
-                    {
-                        @Html.TextBoxFor(m => m.HttpRequest, new { @class = "form-control" })
-                        @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Get, new { @Id = "get" })
-                        <label for="get">Get</label>
-                        @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Post, new { @Id = "post" })
-                        <label for="post">Post</label>
-                        <p></p>
-                        <input type="submit" value="Send Request"/>
-                    }
-                </div>
-                <p>
-                    <div id="resultPane">
-                        @Html.Partial("_HttpResponse", Model)
-                    </div>
-                </p>
-</div>
-    <div class="col-md-4">
-        <h3>Test Area 1</h3>
-        <p>Stuff goes hare</p>
-        <p></p>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>TCP/IP Commands</h3>
+            </div>
+        </div>
+        <div>
+            @using (Html.BeginForm())
+            {
+                <h4>Request</h4>
+                @Html.TextBoxFor(m => m.HttpRequest, new {@class = "form-control input-lg" })
+                <h4>Port Nunber</h4>
+                @Html.TextBoxFor(m => m.HttpPortNumber, new { @class = "form-control input-sm" })
+                @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Get, new {@Id = "get"})
+                <label for="get">Get</label>
+                @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Post, new {@Id = "post"})
+                <label for="post">Post</label>
+                <p></p>
+                <input type="submit" value="Send Request"/>
+            }
+        </div>
+        <p>
+            <div id="resultPane">
+                @Html.Partial("_HttpResponse", Model)
+            </div>
+        </p>
     </div>
+
+    @*Area 2  *@
+    <div class="col-md-4">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>UDP Commands<br/></h3>
+            </div>
+        </div>
+
+        <h4>Request</h4>
+        <div>
+            @using (Html.BeginForm())
+            {
+                @Html.TextBoxFor(m => m.HttpRequest, new {@class = "form-control input-lg" })
+                <h4>Port Nunber</h4>
+                @Html.TextBoxFor(m => m.HttpPortNumber, new { @class = "form-control input-sm" })
+
+                <p></p>
+                <input type="submit" value="Send Request"/>
+            }
+        </div>
+        <p>
+            <div id="resultPane">
+                @Html.Partial("_HttpResponse", Model)
+            </div>
+        </p>
+    </div>
+
+    @*Area 3  *@
     <div class="col-md-4">
         <h3>Test Area 1</h3>
         <p>Stuff goes hare</p>

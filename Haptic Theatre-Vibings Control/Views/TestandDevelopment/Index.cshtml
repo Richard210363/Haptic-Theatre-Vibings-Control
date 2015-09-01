@@ -1,13 +1,17 @@
 ﻿
 @{
     @Html.Hidden("view", @"~\Views\TestandDevelopment\Index.cshtml")
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Development";
 }
 
 
 
-<div class="jumbotron" style="border-color:#66cdaa">
+<div class="jumbotron">
     <h1>Development</h1>
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="active">Development</li>
+    </ol>
 </div>
 
 <div class="row">
