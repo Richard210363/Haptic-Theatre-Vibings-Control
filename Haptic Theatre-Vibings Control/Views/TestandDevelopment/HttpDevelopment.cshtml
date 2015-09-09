@@ -131,21 +131,38 @@
             return false;
         });
 
+        function getUDPMessages() {
+            $.ajax({
+                         url: "@Url.Action("ReceiveUDPMessage", "TestandDevelopment")",
+                        type: "POST",
+                        data: $('#UDPForm').serialize(),
+                        datatype: "text",
+                        success: function (data) {
+                                $('#receivePaneEmulator').html(data);
+                        }   
+                });
+        }
+
+        //$('#EmulatorSubmit').click(function (event) {
+        //    var udpReceiveTimer = setInterval(getUDPMessages, 100);
+        //    $('#EmulatorSubmit').attr('value', 'Stop Receiving');
+        //});
+
+
 
         $('#EmulatorSubmit').click(function (event) {
-            alert("Emulator");
-            $('#receivePaneEmulator').html("<div class='spinner'><div class='dot1'></div><div class='dot2'></div></div>");
-            $.ajax({
-                url: "@Url.Action("ReceiveUDPMessage", "TestandDevelopment")",
-                type: "POST",
-            data: $('#TCPForm').serialize(),
-            datatype: "text",
-            success: function (data) {
-                $('#receivePaneEmulator').html(data);
+
+            var udpReceiveTimer;
+
+            if ($(this).val() == "Receive Messages") {
+                udpReceiveTimer = setInterval(getUDPMessages, 100);
+                $('#EmulatorSubmit').attr('value', 'Stop Receiving');
+            } else {
+                clearInterval(udpReceiveTimer);
+                $('#EmulatorSubmit').attr('value', 'Receive Messages');
             }
         });
-        return false;
-    });
+
     });
 
 </script>
