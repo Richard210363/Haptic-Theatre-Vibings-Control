@@ -21,13 +21,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Web;
 
 namespace Haptic_Theatre_Vibings_Control.Classes
 {
-    public class HTTPManager
+    public static class HTTPManager
     {
-        public string SendGetRequest(string ip)
+
+        static UdpClient _receiveUdpClient = new UdpClient(80);
+        private static string _receivedUdpMessage = " No Messages";
+
+
+        public static string SendGetRequest(string ip)
         {
             WebRequest webRequest = new WebRequest(ip, "GET");
             var response = webRequest.GetResponse();
@@ -35,7 +41,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return response;
         }
 
-        public string SendPostRequest(string ip)
+        public static string SendPostRequest(string ip)
         {
             WebRequest webRequest = new WebRequest(ip, "POST");
             var response = webRequest.GetResponse();
@@ -43,7 +49,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return response;
         }
 
-        internal string SendUdpBroadcast(string httpRequest, string httpPortNumber)
+        internal static string SendUdpBroadcast(string httpRequest, string httpPortNumber)
         {
             UdpClient client = new UdpClient();
             IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, Convert.ToInt16(httpPortNumber));
@@ -57,6 +63,34 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
             return response;
 
+        }
+
+        internal static string ReceiveUdpBroadcast()
+        {
+            _receiveUdpClient = new UdpClient(2365);
+            try
+            {
+                _receiveUdpClient.BeginReceive(new AsyncCallback(ReceiveUdpMessages), null);
+                Thread.Sleep(10000);
+            }
+            catch (Exception e)
+            {
+                int x = 2;
+            }
+
+            return _receivedUdpMessage;
+
+        }
+
+        private static void ReceiveUdpMessages(IAsyncResult res)
+        {
+            IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 8000);
+            byte[] received = _receiveUdpClient.EndReceive(res, ref RemoteIpEndPoint);
+
+            //Process codes
+            _receiveUdpClient.BeginReceive(new AsyncCallback(ReceiveUdpMessages), null);
+
+            _receivedUdpMessage = System.Text.Encoding.UTF8.GetString(received);
         }
     }
 }

@@ -43,6 +43,7 @@
 
         </div>
         <p>
+            <h4>Result</h4>
             <div id="resultPaneTCP">
                 @Html.Partial("_HttpResponse", Model)
             </div>
@@ -82,12 +83,14 @@
                 </h3>
             </div>
         </div>
-        <h4>Port Nunber</h4>
-        @Html.TextBoxFor(m => m.HttpPortNumber, new { @class = "form-control input-sm" })
-        <h4>Message Received</h4>
-        <div>
-                @Html.TextBoxFor(m => m.HttpRequest, new {@class = "form-control input-lg"})
-        </div>
+        <p></p>
+        <input type="button" id="EmulatorSubmit" value="Receive Messages" />
+        <p>
+            <h4>Message Received</h4>
+            <div id="receivePaneEmulator">
+                @Html.Partial("_HttpResponse", Model)
+            </div>
+        </p>
     </div>
 
 </div>
@@ -127,6 +130,22 @@
             });
             return false;
         });
+
+
+        $('#EmulatorSubmit').click(function (event) {
+            alert("Emulator");
+            $('#receivePaneEmulator').html("<div class='spinner'><div class='dot1'></div><div class='dot2'></div></div>");
+            $.ajax({
+                url: "@Url.Action("ReceiveUDPMessage", "TestandDevelopment")",
+                type: "POST",
+            data: $('#TCPForm').serialize(),
+            datatype: "text",
+            success: function (data) {
+                $('#receivePaneEmulator').html(data);
+            }
+        });
+        return false;
+    });
     });
 
 </script>

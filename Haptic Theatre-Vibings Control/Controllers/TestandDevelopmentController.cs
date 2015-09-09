@@ -69,19 +69,16 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
 
             string response="";
 
-            HTTPManager httpManager = new HTTPManager();
-
             if (httpViewModel.HttpRequestType == HttpRequestType.Get)
             {
-                response = httpManager.SendGetRequest(httpViewModel.HttpRequest);
+                response = HTTPManager.SendGetRequest(httpViewModel.HttpRequest);
             }
             if (httpViewModel.HttpRequestType == HttpRequestType.Post)
             {
-                response = httpManager.SendPostRequest(httpViewModel.HttpRequest);
+                response = HTTPManager.SendPostRequest(httpViewModel.HttpRequest);
             }
 
             httpViewModel.HttpResponse = response;
-            Thread.Sleep(2000);
 
             return PartialView("_HttpResponse",httpViewModel);
         }
@@ -98,11 +95,28 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
 
             string response = "";
 
-            HTTPManager httpManager = new HTTPManager();
+            response = HTTPManager.SendUdpBroadcast(httpViewModel.HttpRequest, httpViewModel.HttpPortNumber);
+
+            httpViewModel.HttpResponse = response;
+
+            return PartialView("_HttpResponse", httpViewModel);  //Note This is not used in the view we just need it because ActionResults demand a Return
+        }
 
 
-            response = httpManager.SendUdpBroadcast(httpViewModel.HttpRequest, httpViewModel.HttpPortNumber);
+        /// <summary>
+        /// Receive a Udp message
+        /// </summary>
+        /// <returns></returns>
 
+        public ActionResult ReceiveUDPMessage()
+        {
+            //if (httpViewModel == null) throw new ArgumentNullException(nameof(HttpViewModel));
+
+            string response = "";
+           
+            response = HTTPManager.ReceiveUdpBroadcast();
+
+            HttpViewModel httpViewModel = new HttpViewModel();
             httpViewModel.HttpResponse = response;
 
             return PartialView("_HttpResponse", httpViewModel);

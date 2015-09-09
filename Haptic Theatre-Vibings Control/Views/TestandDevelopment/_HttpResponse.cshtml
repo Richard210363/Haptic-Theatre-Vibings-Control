@@ -1,12 +1,6 @@
 ﻿@model Haptic_Theatre_Vibings_Control.Models.HttpViewModel
 
-@{
-    ViewBag.Title = "Response";
-}
-
 @Html.Hidden("view", @"~\Views\TestandDevelopment\_HttpResponse.cshtml")
 
-<h4>@ViewBag.Title</h4>
-
- @Html.TextAreaFor(m => m.HttpResponse, new { @class = "form-control" , rows = "5" })
+@Html.TextAreaFor(m => m.HttpResponse, new { @class = "form-control" , rows = "5" })
 
