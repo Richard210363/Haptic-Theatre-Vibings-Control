@@ -31,6 +31,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         static UdpClient _receiveUdpClient = new UdpClient(80);
         private static string _receivedUdpMessage = " No Messages";
+        private static string currentUDPPort = "-1";
 
 
         public static string SendGetRequest(string ip)
@@ -65,13 +66,19 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         }
 
-        internal static string ReceiveUdpBroadcast()
+        internal static string ReceiveUdpBroadcast(string httpPortNumber)
         {
-            _receiveUdpClient = new UdpClient(2365);
+            if (httpPortNumber != currentUDPPort)
+            {
+                _receiveUdpClient.Close();
+                _receiveUdpClient = new UdpClient(Convert.ToInt16(httpPortNumber));
+
+                currentUDPPort = httpPortNumber;
+            }
+            //_receiveUdpClient = new UdpClient(2365);
             try
             {
                 _receiveUdpClient.BeginReceive(new AsyncCallback(ReceiveUdpMessages), null);
-                Thread.Sleep(10000);
             }
             catch (Exception e)
             {

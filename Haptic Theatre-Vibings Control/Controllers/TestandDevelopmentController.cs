@@ -108,15 +108,13 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         /// </summary>
         /// <returns></returns>
 
-        public ActionResult ReceiveUDPMessage()
+        public ActionResult ReceiveUDPMessage(HttpViewModel httpViewModel)
         {
-            //if (httpViewModel == null) throw new ArgumentNullException(nameof(HttpViewModel));
-
             string response = "";
            
-            response = HTTPManager.ReceiveUdpBroadcast();
+            response = HTTPManager.ReceiveUdpBroadcast(httpViewModel.HttpPortNumber);
 
-            HttpViewModel httpViewModel = new HttpViewModel();
+            //HttpViewModel httpViewModel = new HttpViewModel();
             httpViewModel.HttpResponse = response;
 
             return PartialView("_HttpResponse", httpViewModel);
