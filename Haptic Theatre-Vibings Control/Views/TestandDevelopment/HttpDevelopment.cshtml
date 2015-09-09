@@ -26,22 +26,24 @@
             </div>
         </div>
         <div>
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("SendTcpMessage", "TestandDevelopment", FormMethod.Post, new { id = "TCPForm"}))
             {
                 <h4>Request</h4>
-                @Html.TextBoxFor(m => m.HttpRequest, new {@class = "form-control input-lg" })
+                @Html.TextBoxFor(m => m.HttpRequest, new { @class = "form-control input-lg" })
                 <h4>Port Nunber</h4>
                 @Html.TextBoxFor(m => m.HttpPortNumber, new { @class = "form-control input-sm" })
                 @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Get, new {@Id = "get"})
                 <label for="get">Get</label>
                 @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Post, new {@Id = "post"})
                 <label for="post">Post</label>
+
                 <p></p>
-                <input type="submit" value="Send Request"/>
+                <input type="submit" id="TCPSubmit" value="Send Request" />
             }
+
         </div>
         <p>
-            <div id="resultPane">
+            <div id="resultPaneTCP">
                 @Html.Partial("_HttpResponse", Model)
             </div>
         </p>
@@ -56,31 +58,38 @@
             </div>
         </div>
 
-        <h4>Request</h4>
+        
         <div>
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("SendUdpBroadcast", "TestandDevelopment", FormMethod.Post, new { id = "UDPForm" }))
             {
+                <h4>Command</h4>
                 @Html.TextBoxFor(m => m.HttpRequest, new {@class = "form-control input-lg" })
                 <h4>Port Nunber</h4>
                 @Html.TextBoxFor(m => m.HttpPortNumber, new { @class = "form-control input-sm" })
 
                 <p></p>
-                <input type="submit" value="Send Request"/>
+                <input type="submit" id="UDPSubmit" value="Send Request"/>
             }
         </div>
-        <p>
-            <div id="resultPane">
-                @Html.Partial("_HttpResponse", Model)
-            </div>
-        </p>
     </div>
 
     @*Area 3  *@
     <div class="col-md-4">
-        <h3>Test Area 1</h3>
-        <p>Stuff goes hare</p>
-        <p></p>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Vibing Emulator<br/>
+                </h3>
+            </div>
+        </div>
+        <h4>Port Nunber</h4>
+        @Html.TextBoxFor(m => m.HttpPortNumber, new { @class = "form-control input-sm" })
+        <h4>Message Received</h4>
+        <div>
+                @Html.TextBoxFor(m => m.HttpRequest, new {@class = "form-control input-lg"})
+        </div>
     </div>
+
 </div>
 
 @Scripts.Render("~/bundles/jquery")
@@ -89,20 +98,35 @@
 
     $(function () {
 
-        $('form').submit(function () {
-            $('#resultPane').html("<div class='spinner'><div class='dot1'></div><div class='dot2'></div></div>");
-                $.ajax({
-                    url: "@Url.Action("SendHttpMessage", "TestandDevelopment")",
-                    type: "POST",
-                    data: $(this).serialize(),
-                    datatype: "text",
-                    success: function (data) {
-                        $('#resultPane').html(data);
-                    }
-                });
+        $('#TCPSubmit').click(function (event) {
+            //alert("tcp");
+            $('#resultPaneTCP').html("<div class='spinner'><div class='dot1'></div><div class='dot2'></div></div>");
+            event.preventDefault();
+            $.ajax({
+                url: "@Url.Action("SendTcpMessage", "TestandDevelopment")",
+                type: "POST",
+                data: $('#TCPForm').serialize(),
+                datatype: "text",
+                success: function (data) {
+                    $('#resultPaneTCP').html(data);
+                }
+            });
             return false;
         });
 
+        $('#UDPSubmit').click(function (event) {
+            //alert("udp");
+            $('#resultPaneUDP').html("<div class='spinner'><div class='dot1'></div><div class='dot2'></div></div>");
+            event.preventDefault();
+            $.ajax({
+                url: "@Url.Action("SendUdpBroadcast", "TestandDevelopment")",
+                type: "POST",
+                data: $('#UDPForm').serialize(),
+                datatype: "text",
+                success: function (data) {}
+            });
+            return false;
+        });
     });
 
 </script>

@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Web;
 
@@ -42,6 +43,20 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return response;
         }
 
+        internal string SendUdpBroadcast(string httpRequest, string httpPortNumber)
+        {
+            UdpClient client = new UdpClient();
+            IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, Convert.ToInt16(httpPortNumber));
 
+            byte[] bytes = Encoding.ASCII.GetBytes(httpRequest);
+
+            client.Send(bytes, bytes.Length, ip);
+            client.Close();
+
+            string response = "Broadcast: " + httpRequest;
+
+            return response;
+
+        }
     }
 }

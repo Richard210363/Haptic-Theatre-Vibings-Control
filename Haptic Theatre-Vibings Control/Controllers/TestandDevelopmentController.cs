@@ -53,7 +53,7 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         #region Http Development
 
         /// <summary>
-        /// Send an Http message
+        /// Send a tcp message
         /// </summary>
         /// <param name="httpViewModel"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         /// http://httpbin.org/get
         /// http://httpbin.org/post
         /// </remarks>
-        public ActionResult SendHttpMessage(HttpViewModel httpViewModel)
+        public ActionResult SendTcpMessage(HttpViewModel httpViewModel)
         {
             if (httpViewModel == null) throw new ArgumentNullException(nameof(HttpViewModel));
 
@@ -84,6 +84,28 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
             Thread.Sleep(2000);
 
             return PartialView("_HttpResponse",httpViewModel);
+        }
+
+        /// <summary>
+        /// Send a Udp message
+        /// </summary>
+        /// <param name="httpViewModel"></param>
+        /// <returns></returns>
+
+        public ActionResult SendUdpBroadcast(HttpViewModel httpViewModel)
+        {
+            if (httpViewModel == null) throw new ArgumentNullException(nameof(HttpViewModel));
+
+            string response = "";
+
+            HTTPManager httpManager = new HTTPManager();
+
+
+            response = httpManager.SendUdpBroadcast(httpViewModel.HttpRequest, httpViewModel.HttpPortNumber);
+
+            httpViewModel.HttpResponse = response;
+
+            return PartialView("_HttpResponse", httpViewModel);
         }
 
         #endregion
