@@ -88,7 +88,6 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         /// </summary>
         /// <param name="httpViewModel"></param>
         /// <returns></returns>
-
         public ActionResult SendUdpBroadcast(HttpViewModel httpViewModel)
         {
             if (httpViewModel == null) throw new ArgumentNullException(nameof(HttpViewModel));
@@ -107,19 +106,32 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         /// Receive a Udp message
         /// </summary>
         /// <returns></returns>
-
         public ActionResult ReceiveUDPMessage(HttpViewModel httpViewModel)
         {
             string response = "";
            
             response = HTTPManager.ReceiveUdpBroadcast(httpViewModel.HttpPortNumber);
 
-            //HttpViewModel httpViewModel = new HttpViewModel();
             httpViewModel.HttpResponse = response;
 
             return PartialView("_HttpResponse", httpViewModel);
         }
 
+
+        /// <summary>
+        /// Cancel UDP Receive
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CancelReceiveUDPMessage(HttpViewModel httpViewModel)
+        {
+            string response = "";
+
+            HTTPManager.CancelUdpBroadcast();
+
+            httpViewModel.HttpResponse = response;
+
+            return PartialView("_HttpResponse", httpViewModel);  //Note This is not used in the view we just need it because ActionResults demand a Return
+        }
         #endregion
     }
 }

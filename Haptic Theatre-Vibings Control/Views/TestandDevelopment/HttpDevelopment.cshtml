@@ -131,39 +131,45 @@
             return false;
         });
 
-        function getUDPMessages() {
-            $.ajax({
-                         url: "@Url.Action("ReceiveUDPMessage", "TestandDevelopment")",
-                        type: "POST",
-                        data: $('#UDPForm').serialize(),
-                        datatype: "text",
-                        success: function (data) {
-                                $('#receivePaneEmulator').html(data);
-                        }   
-                });
-        }
 
-        //$('#EmulatorSubmit').click(function (event) {
-        //    var udpReceiveTimer = setInterval(getUDPMessages, 100);
-        //    $('#EmulatorSubmit').attr('value', 'Stop Receiving');
-        //});
-
-
+        var udpReceiveTimer;
 
         $('#EmulatorSubmit').click(function (event) {
-
-            var udpReceiveTimer;
 
             if ($(this).val() == "Receive Messages") {
                 udpReceiveTimer = setInterval(getUDPMessages, 100);
                 $('#EmulatorSubmit').attr('value', 'Stop Receiving');
             } else {
+                //alert("stoping");
                 clearInterval(udpReceiveTimer);
+                cancelGetUDPMessages();
                 $('#EmulatorSubmit').attr('value', 'Receive Messages');
             }
         });
 
     });
+
+    function getUDPMessages() {
+        $.ajax({
+            url: "@Url.Action("ReceiveUDPMessage", "TestandDevelopment")",
+            type: "POST",
+        data: $('#UDPForm').serialize(),
+        datatype: "text",
+        success: function (data) {
+            $('#receivePaneEmulator').html(data);
+        }   
+    });
+    }
+
+    function cancelGetUDPMessages() {
+        $.ajax({
+            url: "@Url.Action("CancelReceiveUDPMessage", "TestandDevelopment")",
+            type: "POST",
+        data: $('#UDPForm').serialize(),
+        datatype: "text",
+        success: function () {}   
+    });
+    }
 
 </script>
 
