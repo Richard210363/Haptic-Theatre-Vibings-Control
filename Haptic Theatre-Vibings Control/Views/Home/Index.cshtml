@@ -1,8 +1,5 @@
 ﻿@model Haptic_Theatre_Vibings_Control.Models.HttpViewModel
 
-@{
-}
-
 @Html.Hidden("view", @"~\Views\Home\Index.cshtml")
 
 <div class="jumbotron">
@@ -13,7 +10,8 @@
     <div class="col-md-4">
         <h2>Live Control</h2>
         <p>
-            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Open Live Controller</a><div class="btn btn-success">System is running in Show mode</div>
+            @Html.ActionLink("Open Live Controller", "Index", "Live", null, new { @class = "btn btn-default" })
+            <div class="btn btn-success">System is running in Show mode</div>
         </p>
         <p></p>
 
@@ -45,7 +43,8 @@
 
     <div class="col-md-4">
         <h2>Display Modes</h2>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Open Mode Library</a>
+        <p>
+            @Html.ActionLink("Open Mode Library", "Index", "Modes", null, new { @class = "btn btn-default" })
         </p>
     </div>
 

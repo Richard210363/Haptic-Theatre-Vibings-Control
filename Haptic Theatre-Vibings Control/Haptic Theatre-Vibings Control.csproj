@@ -172,7 +172,9 @@
     <Compile Include="Classes\SendWebRequest.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LiveController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ModesController.cs" />
     <Compile Include="Controllers\TestandDevelopmentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -245,6 +247,8 @@
     <Content Include="Views\TestandDevelopment\Index.cshtml" />
     <Content Include="Views\TestandDevelopment\HttpDevelopment.cshtml" />
     <Content Include="Views\TestandDevelopment\_HttpResponse.cshtml" />
+    <Content Include="Views\Live\Index.cshtml" />
+    <Content Include="Views\Modes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
