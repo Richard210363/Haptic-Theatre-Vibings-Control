@@ -15,10 +15,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Web;
 using System.Web.Mvc;
 using Haptic_Theatre_Vibings_Control.Classes;
 using Haptic_Theatre_Vibings_Control.Models;
