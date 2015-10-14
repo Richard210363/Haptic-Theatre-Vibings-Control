@@ -10,7 +10,8 @@
 
  Date(MM/DD/YYYY)		    REV BY		           REV DESC
  ----------------------------------------------------------------------------------------------
- 11/09/2015                 Richard Byrne          Created 
+ 11/09/2015                 Richard Byrne          Created
+ 28/09/2015                 Richard Byrne          Added new views  
 **********************************************************************************************/
 
 #endregion
@@ -30,5 +31,19 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         {
             return View();
         }
+
+        // GET: Modes
+        public ActionResult ModeForShows()
+        {
+            return View();
+        }
+
+        // GET: Modes
+        public ActionResult ModeDesign()
+        {
+            return View();
+        }
+
+
     }
 }
