@@ -100,6 +100,10 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         public string GetResponse()
         {
+            System.Net.ServicePointManager.Expect100Continue = false;
+
+            try
+            {
             // Get the original response.
             WebResponse response = request.GetResponse();
 
@@ -120,6 +124,14 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             response.Close();
 
             return responseFromServer;
+            }
+            catch (Exception e)
+            {
+                return "Error: " + e.Message;
+
+
+            }
+
         }
 
     }
