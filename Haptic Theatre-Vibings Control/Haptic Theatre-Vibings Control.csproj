@@ -249,6 +249,8 @@
     <Content Include="Views\TestandDevelopment\_HttpResponse.cshtml" />
     <Content Include="Views\Live\Index.cshtml" />
     <Content Include="Views\Modes\Index.cshtml" />
+    <Content Include="Views\Modes\ModeForShows.cshtml" />
+    <Content Include="Views\Modes\ModeDesign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
