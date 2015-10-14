@@ -18,33 +18,73 @@
         <table class="table table-striped table-hover ">
             <thead>
             <tr>
-                <th>Display Mode Quick Select</th>
+                <th>Mode Quick Select</th>
             </tr>
             </thead>
             <tbody>
-            <tr class="warning">
-                <td>Mode 1 - Happy Circles</td>
-            </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Spin Clock", "Mode_002", "Live", new { colourHex = "251346", loopdelay = "200" }, new {@class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Spin AntoClock", "Mode_003", "Live", new { colourHex = "8b550f", loopdelay = "50" }, new {@class = "btn - success"})
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Dark Clock", "Mode_004", "Live", new { colourHex = "1a8b0f", loopdelay = "50" }, new {@class = "btn - success"})
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Dark Anti", "Mode_005", "Live", new { colourHex = "0f618b", loopdelay = "10" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Full On Green", "Mode_001", "Live", new { colourHex = "00ff00" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Full On Blue", "Mode_001", "Live", new { colourHex = "0000ff" }, new {@class = "btn - success"})
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Cheer Pom Pom", "Mode_006", "Live", new {colourHex = "8b0f6c", loopdelay = "50"}, new {@class = "btn - success"})
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Happy Trails", "Mode_007", "Live", new { colourHex_01 = "444400", colourHex_02 = "333300", colourHex_03 = "222200", colourHex_04 = "111100", loopdelay = "50" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Buzzin'", "Mode_008", "Live", null, new {@class = "btn - success"})
+                    </td>
+                </tr>
             <tr class="info">
-                <td>Mode 2 - Sadder Circles</td>
+                <td>
+                    @Html.ActionLink("Stop Buzzin'", "Mode_009", "Live", null, new {@class = "btn - success"})
+                </td>
             </tr>
-            <tr class="info">
-                <td>Mode 3 - Bottom Bounce</td>
-            </tr>
-            <tr class="info">
-                <td>Mode 4 - Hope</td>
-            </tr>
-            <tr class="info">
-                <td>Mode 5 - Sunrise</td>
-            </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Pom Pom Buzz", "Mode_011", "Live", new { colourHex = "8b0f6c", loopdelay = "120" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <div class="col-md-4">
-        <h2>Display Modes</h2>
+        <h2>Modes</h2>
         <p>
-            @Html.ActionLink("Open Mode Library", "Index", "Modes", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Open Mode Management", "Index", "Modes", null, new { @class = "btn btn-default" })
         </p>
     </div>
 
