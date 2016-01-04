@@ -85,7 +85,6 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         }
 
-
         /// <summary>
         /// Waits on a port for UDP messages
         /// </summary>
