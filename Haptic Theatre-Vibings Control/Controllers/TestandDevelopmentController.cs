@@ -63,6 +63,17 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         {
             if (httpViewModel == null) throw new ArgumentNullException(nameof(HttpViewModel));
 
+            Uri uriResult;
+            bool result = Uri.TryCreate(httpViewModel.HttpRequest, UriKind.Absolute, out uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+            if(!result)
+            {
+                httpViewModel.HttpResponse = "Not a valid URL";
+
+                return PartialView("_HttpResponse", httpViewModel);
+            }
+
             string response="";
 
             if (httpViewModel.HttpRequestType == HttpRequestType.Get)
