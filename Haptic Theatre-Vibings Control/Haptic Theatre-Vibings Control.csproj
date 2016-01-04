@@ -245,12 +245,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\TestandDevelopment\Index.cshtml" />
-    <Content Include="Views\TestandDevelopment\HttpDevelopment.cshtml" />
     <Content Include="Views\TestandDevelopment\_HttpResponse.cshtml" />
     <Content Include="Views\Live\Index.cshtml" />
     <Content Include="Views\Modes\Index.cshtml" />
     <Content Include="Views\Modes\ModeForShows.cshtml" />
     <Content Include="Views\Modes\ModeDesign.cshtml" />
+    <Content Include="Views\TestandDevelopment\HttpDevelopment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

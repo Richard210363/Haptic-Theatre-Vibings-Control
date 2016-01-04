@@ -11,6 +11,9 @@
         <li class="active">Http Development</li>
     </ol>
 </div>
+<body>
+    
+</body>
 
 <div class="row">
     @*Area 1  *@
@@ -22,20 +25,20 @@
             </div>
         </div>
         <div>
-            @using (Html.BeginForm("SendTcpMessage", "TestandDevelopment", FormMethod.Post, new { id = "TCPForm"}))
+            @using (Html.BeginForm("SendTcpMessage", "TestandDevelopment", FormMethod.Post, new { id = "TCPForm" }))
             {
                 <h4>Request</h4>
                 @Html.TextBoxFor(m => m.HttpRequest, new { @class = "form-control input-lg" })
                 <h4>Port Nunber</h4>
                 @Html.TextBoxFor(m => m.HttpPortNumber, new { @class = "form-control input-sm" })
-                @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Get, new {@Id = "get"})
+                @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Get, new { @Id = "get" })
                 <label for="get">Get</label>
-                @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Post, new {@Id = "post"})
+                @Html.RadioButtonFor(model => model.HttpRequestType, HttpRequestType.Post, new { @Id = "post" })
                 <label for="post">Post</label>
 
                 <p></p>
-                <input type="submit" id="TCPSubmit" value="Send Request" />
             }
+            <input type="submit" id="TCPSubmit" value="Send Request" />
 
         </div>
         <p>
@@ -51,21 +54,21 @@
 
         <div class="panel panel-default">
             <div class="panel-body">
-                <h3>UDP Commands<br/></h3>
+                <h3>UDP Commands<br /></h3>
             </div>
         </div>
 
-        
+
         <div>
             @using (Html.BeginForm("SendUdpBroadcast", "TestandDevelopment", FormMethod.Post, new { id = "UDPForm" }))
             {
                 <h4>Command</h4>
-                @Html.TextBoxFor(m => m.HttpRequest, new {@class = "form-control input-lg" })
+                @Html.TextBoxFor(m => m.HttpRequest, new { @class = "form-control input-lg" })
                 <h4>Port Nunber</h4>
                 @Html.TextBoxFor(m => m.HttpPortNumber, new { @class = "form-control input-sm" })
 
                 <p></p>
-                <input type="submit" id="UDPSubmit" value="Send Request"/>
+                <input type="submit" id="UDPSubmit" value="Send Request" />
             }
         </div>
     </div>
@@ -75,12 +78,13 @@
 
         <div class="panel panel-default">
             <div class="panel-body">
-                <h3>Vibing Emulator<br/>
+                <h3>
+                    Vibing Emulator<br />
                 </h3>
             </div>
         </div>
         <p></p>
-        <input type="button" id="EmulatorSubmit" value="Receive Messages" />
+        <input type="button" id="EmulatorSubmit" value="Receive UDP Messages" />
         <p>
             <h4>Message Received</h4>
             <div id="receivePaneEmulator">
@@ -88,17 +92,14 @@
             </div>
         </p>
     </div>
+</div> 
 
-</div>
+@section scripts {
 
-@Scripts.Render("~/bundles/jquery")
-
-<script type="text/javascript">
-
-    $(function () {
+    <script type="text/javascript">
 
         $('#TCPSubmit').click(function (event) {
-            //alert("tcp");
+            //alert("TCPSubmit");
             $('#resultPaneTCP').html("<div class='spinner'><div class='dot1'></div><div class='dot2'></div></div>");
             event.preventDefault();
             $.ajax({
@@ -110,62 +111,59 @@
                     $('#resultPaneTCP').html(data);
                 }
             });
-            return false;
         });
 
         $('#UDPSubmit').click(function (event) {
-            //alert("udp");
+            //alert("UDPSubmit");
             $('#resultPaneUDP').html("<div class='spinner'><div class='dot1'></div><div class='dot2'></div></div>");
             event.preventDefault();
             $.ajax({
                 url: "@Url.Action("SendUdpBroadcast", "TestandDevelopment")",
                 type: "POST",
-                data: $('#UDPForm').serialize(),
-                datatype: "text",
-                success: function (data) {}
-            });
-            return false;
+            data: $('#UDPForm').serialize(),
+            datatype: "text",
+            success: function (data) {}
         });
-
+        return false;
+        });
 
         var udpReceiveTimer;
 
         $('#EmulatorSubmit').click(function (event) {
-
-            if ($(this).val() == "Receive Messages") {
+            //alert("EmulatorSubmit");
+            if ($(this).val() == "Receive UDP Messages") {
                 udpReceiveTimer = setInterval(getUDPMessages, 100);
-                $('#EmulatorSubmit').attr('value', 'Stop Receiving');
+                $('#EmulatorSubmit').attr('value', 'Stop Receiving UDP Messages');
             } else {
                 //alert("stoping");
                 clearInterval(udpReceiveTimer);
+                $('#EmulatorSubmit').attr('value', 'Receive UDP Messages');
                 cancelGetUDPMessages();
-                $('#EmulatorSubmit').attr('value', 'Receive Messages');
             }
         });
 
-    });
+        function getUDPMessages() {
+            $.ajax({
+                url: "@Url.Action("ReceiveUDPMessage", "TestandDevelopment")",
+                type: "POST",
+                data: $('#UDPForm').serialize(),
+                datatype: "text",
+                success: function (data) {
+                    $('#receivePaneEmulator').html(data);
+                }
+            });
+        };
 
-    function getUDPMessages() {
-        $.ajax({
-            url: "@Url.Action("ReceiveUDPMessage", "TestandDevelopment")",
-            type: "POST",
-        data: $('#UDPForm').serialize(),
-        datatype: "text",
-        success: function (data) {
-            $('#receivePaneEmulator').html(data);
-        }   
-    });
-    }
+        function cancelGetUDPMessages() {
+            $.ajax({
+                url: "@Url.Action("CancelReceiveUDPMessage", "TestandDevelopment")",
+                type: "POST",
+                data: $('#UDPForm').serialize(),
+                datatype: "text",
+                success: function () { }
+            });
+        };
 
-    function cancelGetUDPMessages() {
-        $.ajax({
-            url: "@Url.Action("CancelReceiveUDPMessage", "TestandDevelopment")",
-            type: "POST",
-        data: $('#UDPForm').serialize(),
-        datatype: "text",
-        success: function () {}   
-    });
-    }
-
-</script>
+    </script>
+}
 
