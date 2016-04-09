@@ -42,7 +42,7 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
 
             //set defaults
             httpViewModel.HttpRequestType = HttpRequestType.Get;
-            httpViewModel.HttpPortNumber = "80";
+            httpViewModel.HttpPortNumber = "50002";
             return View(httpViewModel);
         }
 
@@ -116,8 +116,10 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         public ActionResult ReceiveUDPMessage(HttpViewModel httpViewModel)
         {
             string response = "";
-           
-            response = HTTPManager.ReceiveUdpBroadcast(httpViewModel.HttpPortNumber);
+
+            // response = HTTPManager.ReceiveUdpBroadcast(httpViewModel.HttpPortNumber);
+
+            response = HTTPManager.ReceiveUdpBroadcast("50002");
 
             httpViewModel.HttpResponse = response;
 
