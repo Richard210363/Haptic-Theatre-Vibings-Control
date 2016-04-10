@@ -175,6 +175,8 @@
     <Compile Include="Controllers\LiveController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModesController.cs" />
+    <Compile Include="Controllers\SetupController.cs" />
+    <Compile Include="Controllers\ShowsController.cs" />
     <Compile Include="Controllers\TestandDevelopmentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -246,11 +248,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\TestandDevelopment\Index.cshtml" />
     <Content Include="Views\TestandDevelopment\_HttpResponse.cshtml" />
-    <Content Include="Views\Live\Index.cshtml" />
     <Content Include="Views\Modes\Index.cshtml" />
-    <Content Include="Views\Modes\ModeForShows.cshtml" />
     <Content Include="Views\Modes\ModeDesign.cshtml" />
     <Content Include="Views\TestandDevelopment\HttpDevelopment.cshtml" />
+    <Content Include="Views\Live\Index.cshtml" />
+    <Content Include="Views\Shows\SetupModes.cshtml" />
+    <Content Include="Views\Shows\ManageShows.cshtml" />
+    <Content Include="Views\Shows\SetupInputs.cshtml" />
+    <Content Include="Views\Setup\Index.cshtml" />
+    <Content Include="Views\Shows\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

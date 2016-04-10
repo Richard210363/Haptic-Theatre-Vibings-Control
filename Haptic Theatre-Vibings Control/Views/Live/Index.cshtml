@@ -1,0 +1,106 @@
+﻿@Html.Hidden("view", @"~\Views\Live\Index.cshtml")
+
+<div class="jumbotron">
+    <h1>Live Show</h1>
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="active">Live Show</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Live Control</h2>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Information</h2>
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th>Inputs in Show</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Heart Beat Monitor", "HeartBeatMonitor", "Live", new { @class = "btn - success" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th>Modes in Show</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Spin Clock", "Mode_002", "Live", new { colourHex = "251346", loopdelay = "200" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Spin AntoClock", "Mode_003", "Live", new { colourHex = "8b550f", loopdelay = "50" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Dark Clock", "Mode_004", "Live", new { colourHex = "1a8b0f", loopdelay = "50" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Dark Anti", "Mode_005", "Live", new { colourHex = "0f618b", loopdelay = "10" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Full On Green", "Mode_001", "Live", new { colourHex = "00ff00" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Full On Blue", "Mode_001", "Live", new { colourHex = "0000ff" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Cheer Pom Pom", "Mode_006", "Live", new { colourHex = "8b0f6c", loopdelay = "50" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Happy Trails", "Mode_007", "Live", new { colourHex_01 = "444400", colourHex_02 = "333300", colourHex_03 = "222200", colourHex_04 = "111100", loopdelay = "50" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Buzzin'", "Mode_008", "Live", null, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Stop Buzzin'", "Mode_009", "Live", null, new { @class = "btn - success" })
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        @Html.ActionLink("Pom Pom Buzz", "Mode_011", "Live", new { colourHex = "8b0f6c", loopdelay = "120" }, new { @class = "btn - success" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Setup</h2>
+        <p>
+            @Html.ActionLink("Configure Current Show", "Index", "Setup", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+
+</div>

@@ -33,12 +33,6 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         }
 
         // GET: Modes
-        public ActionResult ModeForShows()
-        {
-            return View();
-        }
-
-        // GET: Modes
         public ActionResult ModeDesign()
         {
             return View();

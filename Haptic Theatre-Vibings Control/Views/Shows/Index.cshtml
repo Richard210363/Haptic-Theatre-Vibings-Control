@@ -1,0 +1,31 @@
+﻿@Html.Hidden("view", @"~\Views\Shows\Index.cshtml")
+
+
+<div class="jumbotron">
+    <h1>Setup Shows</h1>
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("Setup", "Index", "Setup")</li>
+        <li class="active">Shows</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Manage Shows</h2>
+        <p>Manage the collection of Shows</p>
+        <p>@Html.ActionLink("Manage Shows", "ManageShows", "Shows", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Setup Show Modes</h2>
+        <p>Configure the modes used in a show</p>
+        <p>@Html.ActionLink("Setup Show Modes", "SetupModes", "Shows", null, new {@class = "btn btn-default"})</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Setup Show Inputs</h2>
+        <p>Configure the inputs used in a show</p>
+        <p>
+            @Html.ActionLink("Setup Show Inputs", "SetupInputs", "Shows", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>
