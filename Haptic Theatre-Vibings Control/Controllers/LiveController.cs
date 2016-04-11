@@ -31,9 +31,16 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
             return View();
         }
 
+        // GET: Live
+        public ActionResult StartShow()
+        {
+            Global.IsShowLive = !Global.IsShowLive;
+            return RedirectToAction("Index", "Live");
+        }
+
         #region JUST FOR DEMOS
 
-        
+
         public ActionResult HeartBeatMonitor()
         {
             return RedirectToAction("Index", "Live");

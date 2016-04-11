@@ -1,7 +1,10 @@
 ﻿@Html.Hidden("view", @"~\Views\Live\Index.cshtml")
 
 <div class="jumbotron">
-    <h1>Live Show</h1>
+    <h1>
+        Live Show
+    </h1>
+    @{ Html.RenderPartial("_ShowRunning"); }
     <ol class="breadcrumb">
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
         <li class="active">Live Show</li>
@@ -11,6 +14,19 @@
 <div class="row">
     <div class="col-md-4">
         <h2>Live Control</h2>
+        @if (ViewBag.IsShowLive)
+        {
+            <p>
+                @Html.ActionLink("Set Show to Not Running", "StartShow", "Live", null, new { @class = "btn btn-default" })
+            </p>
+        }
+        else
+        {
+            <p>
+                @Html.ActionLink("Set Show to Running", "StartShow", "Live", null, new { @class = "btn btn-default" })
+            </p>
+        }
+
     </div>
 
     <div class="col-md-4">

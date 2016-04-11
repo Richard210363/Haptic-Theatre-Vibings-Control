@@ -24,7 +24,7 @@ using System.Web.Mvc;
 
 namespace Haptic_Theatre_Vibings_Control.Controllers
 {
-    public class ModesController : Controller
+    public class SetupModesController : Controller
     {
         // GET: Modes
         public ActionResult Index()

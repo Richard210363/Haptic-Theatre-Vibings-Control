@@ -23,6 +23,11 @@ textarea {
     max-width: 280px;
 }
 
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
 
 /* Spinner */
 .spinner {

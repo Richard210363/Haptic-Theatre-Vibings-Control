@@ -1,19 +1,18 @@
 ﻿#region File Information
 
 /********************************************************************************************
-* \Haptic Theatre-Vibings ControlX\Haptic Theatre-Vibings Control\Controllers\SetupController.cs
+* \Haptic Theatre-Vibings Control\Haptic Theatre-Vibings Control\Controllers\SetupShowsController.cs
 * ****************************************************************************************** 
- DESCRIPTION   : Used as the top level of settings
+ DESCRIPTION   : Scratch pad code for development
 
  REVISION HISTORY: 
 
  Date(MM/DD/YYYY)		    REV BY		           REV DESC
  ----------------------------------------------------------------------------------------------
- 10/04/2016                 Richard Byrne          Created
+ 30/08/2015                 Richard Byrne          Created 
 **********************************************************************************************/
 
 #endregion
-
 
 using System;
 using System.Collections.Generic;
@@ -23,12 +22,29 @@ using System.Web.Mvc;
 
 namespace Haptic_Theatre_Vibings_Control.Controllers
 {
-    public class SetupController : Controller
+    public class SetupShowsController : Controller
     {
-        // GET: Setup
+        // GET: Shows
         public ActionResult Index()
         {
-            ViewBag.ViewName = "Setup";
+            return View();
+        }
+
+        // GET: Modes
+        public ActionResult ManageShows()
+        {
+            return View();
+        }
+
+        // GET: Modes
+        public ActionResult SetupModes()
+        {
+            return View();
+        }
+
+        // GET: Modes
+        public ActionResult SetupInputs()
+        {
             return View();
         }
     }

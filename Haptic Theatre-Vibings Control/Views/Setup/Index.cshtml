@@ -2,7 +2,10 @@
 
 
 <div class="jumbotron">
-    <h1>Setup</h1>
+    <h1>
+        Setup
+    </h1>
+    @{ Html.RenderPartial("_ShowRunning"); }
     <ol class="breadcrumb">
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
         <li class="active">Setup</li>
@@ -13,11 +16,11 @@
     <div class="col-md-4">
         <h2>Setup Shows</h2>
         <p>Create and configure Shows</p>
-        <p>@Html.ActionLink("Setup Shows", "Index", "Shows", null, new { @class = "btn btn-default" })</p>
+        <p>@Html.ActionLink("Setup Shows", "Index", "SetupShows", null, new { @class = "btn btn-default" })</p>
     </div>
     <div class="col-md-4">
         <h2>Mode Design</h2>
         <p>Design new modes</p>
-        <p>@Html.ActionLink("Mode Design", "ModeDesign", "Modes", null, new { @class = "btn btn-default" })</p>
+        <p>@Html.ActionLink("Mode Design", "ModeDesign", "SetupModes", null, new { @class = "btn btn-default" })</p>
     </div>
 </div>
