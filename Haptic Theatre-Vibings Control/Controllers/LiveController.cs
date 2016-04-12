@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Haptic_Theatre_Vibings_Control.Classes;
@@ -35,6 +36,16 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         public ActionResult StartShow()
         {
             Global.IsShowLive = !Global.IsShowLive;
+
+            if (Global.IsShowLive)
+            {
+                TimeTriggering.continueToRead = true;
+                Task.Run(() => { TimeTriggering.ReadTriggers(); });
+            }
+            else
+            {
+                TimeTriggering.continueToRead = false;
+            }
             return RedirectToAction("Index", "Live");
         }
 

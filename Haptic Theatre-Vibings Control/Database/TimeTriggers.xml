@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Triggers>
+  <Trigger>
+    <Index>1</Index>
+    <Time>00:00:10</Time>
+    <Command></Command>
+  </Trigger>
+  <Trigger>
+    <Index>2</Index>
+    <Time>00:00:20</Time>
+    <Command></Command>
+  </Trigger>
+  <Trigger>
+    <Index>3</Index>
+    <Time>00:00:30</Time>
+    <Command></Command>
+  </Trigger>
+  <Trigger>
+    <Index>4</Index>
+    <Time>00:00:40</Time>
+    <Command></Command>
+  </Trigger>
+</Triggers>
