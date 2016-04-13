@@ -171,7 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\SignalHub.cs" />
-    <Compile Include="Classes\TimeTriggering.cs" />
+    <Compile Include="Classes\ModeChangeTriggering.cs" />
     <Compile Include="Global\Global.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

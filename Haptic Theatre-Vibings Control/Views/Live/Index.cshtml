@@ -26,6 +26,18 @@
                 @Html.ActionLink("Set Show to Running", "StartShow", "Live", null, new {@class = "btn btn-default"})
             </p>
         }
+        @if (ViewBag.IsShowLive)
+        {
+            <p>
+                @Html.ActionLink("Set Dummy Show to Not Running", "StartDummyShow", "Live", null, new { @class = "btn btn-default" })
+            </p>
+        }
+        else
+        {
+            <p>
+                @Html.ActionLink("Set Dummy Show to Running", "StartDummyShow", "Live", null, new { @class = "btn btn-default" })
+            </p>
+        }
 
     </div>
 

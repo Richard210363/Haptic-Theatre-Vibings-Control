@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Triggers>
   <Trigger>
-    <Index>1</Index>
-    <Time>00:00:10</Time>
-    <Command></Command>
+    <HeartRateLower>0</HeartRateLower>
+    <HeartRateUpper>55</HeartRateUpper>
+    <Command>0to50</Command>
   </Trigger>
   <Trigger>
-    <Index>2</Index>
-    <Time>00:00:20</Time>
-    <Command></Command>
+    <HeartRateLower>56</HeartRateLower>
+    <HeartRateUpper>60</HeartRateUpper>
+    <Command>56to60</Command>
   </Trigger>
   <Trigger>
-    <Index>3</Index>
-    <Time>00:00:30</Time>
-    <Command></Command>
+    <HeartRateLower>61</HeartRateLower>
+    <HeartRateUpper>65</HeartRateUpper>
+    <Command>61to65</Command>
   </Trigger>
   <Trigger>
-    <Index>4</Index>
-    <Time>00:00:40</Time>
-    <Command></Command>
+    <HeartRateLower>66</HeartRateLower>
+    <HeartRateUpper>70</HeartRateUpper>
+    <Command>66to70</Command>
   </Trigger>
 </Triggers>

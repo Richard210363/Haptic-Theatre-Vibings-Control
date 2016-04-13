@@ -39,18 +39,34 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
 
             if (Global.IsShowLive)
             {
-                TimeTriggering.continueToRead = true;
-                Task.Run(() => { TimeTriggering.ReadTriggers(); });
+                ModeChangeTriggering.continueToRead = true;
+                Task.Run(() => { ModeChangeTriggering.ReadTriggers(); });
             }
             else
             {
-                TimeTriggering.continueToRead = false;
+                ModeChangeTriggering.continueToRead = false;
             }
             return RedirectToAction("Index", "Live");
         }
 
         #region JUST FOR DEMOS
 
+        // GET: Live
+        public ActionResult StartDummyShow()
+        {
+            Global.IsShowLive = !Global.IsShowLive;
+
+            if (Global.IsShowLive)
+            {
+                ModeChangeTriggering.continueToRead = true;
+                Task.Run(() => { ModeChangeTriggering.StartShow_Dummy(); });
+            }
+            else
+            {
+                ModeChangeTriggering.continueToRead = false;
+            }
+            return RedirectToAction("Index", "Live");
+        }
 
         public ActionResult HeartBeatMonitor()
         {
