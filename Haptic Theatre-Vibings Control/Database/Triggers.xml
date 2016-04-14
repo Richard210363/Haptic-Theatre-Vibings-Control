@@ -3,21 +3,21 @@
   <Trigger>
     <HeartRateLower>0</HeartRateLower>
     <HeartRateUpper>55</HeartRateUpper>
-    <Command>0to50</Command>
+    <ShowMode>ShowMode01</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>56</HeartRateLower>
     <HeartRateUpper>60</HeartRateUpper>
-    <Command>56to60</Command>
+    <ShowMode>ShowMode02</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>61</HeartRateLower>
     <HeartRateUpper>65</HeartRateUpper>
-    <Command>61to65</Command>
+    <ShowMode>ShowMode03</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>66</HeartRateLower>
     <HeartRateUpper>70</HeartRateUpper>
-    <Command>66to70</Command>
+    <ShowMode>ShowMode04</ShowMode>
   </Trigger>
 </Triggers>

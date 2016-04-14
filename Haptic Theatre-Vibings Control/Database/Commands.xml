@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ShowModes>
+  <ShowMode>
+    <Name>ShowMode01</Name>
+    <Command>?mode=001amp;colour_001=%23000000amp;brightness=100</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode02</Name>
+    <Command>?mode=001amp;colour_001=%23111111amp;brightness=100</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode03</Name>
+    <Command>?mode=001amp;colour_001=%23aaaaaaamp;brightness=1003</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode04</Name>
+    <Command>?mode=001amp;colour_001=%23ffffffamp;brightness=100</Command>
+  </ShowMode>
+</ShowModes>

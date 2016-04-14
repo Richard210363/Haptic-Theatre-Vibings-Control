@@ -23,7 +23,6 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Xml;
-using System.Web;
 using System.Web.Hosting;
 using Microsoft.AspNet.SignalR;
 
@@ -31,60 +30,81 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 {
     public static class ModeChangeTriggering
     {
-        public static bool continueToRead = false;
-        private static IHubContext signalHub = GlobalHost.ConnectionManager.GetHubContext<SignalHub>();
-        private static string currentModeCommand ="";
+        public static bool ContinueToRead { get; set; } = false;
+        private static readonly IHubContext SignalHub = GlobalHost.ConnectionManager.GetHubContext<SignalHub>();
+        private static string _currentCommand ="";
 
         public static void StartShow_Dummy()
         {
             int heartBeat = 50;
 
-            while (continueToRead)
+            while (ContinueToRead)
             {
-                string newModeCommand = GetModeCommand(heartBeat);
-                if (newModeCommand != currentModeCommand)
+                string newCommand = GetCommand(heartBeat);
+                if (newCommand != _currentCommand)
                 {
-                    //SetMode
-                    currentModeCommand = newModeCommand;
-                    int s = 2;
+                    _currentCommand = newCommand;
                 }
 
-                signalHub.Clients.All.updateHeartRate(heartBeat.ToString());
+                SignalHub.Clients.All.updateHeartRate(heartBeat.ToString());
                 Thread.Sleep(2000);
                 heartBeat++;
             }
         }
 
-        static string GetModeCommand(int heartBeat)
+        static string GetCommand(int heartBeat)
         {
             XmlDocument triggersXML =  LoadTriggers();
-            string modeCommand = GetModeCommandForThisHeartRate(triggersXML, heartBeat);
+            string showMode = GetShowModeForThisHeartRate(triggersXML, heartBeat);
 
-            return modeCommand;
+            XmlDocument commandsXML = LoadCommands();
+
+            string command = GetCommandForThisShowMode(commandsXML, showMode);
+
+            return command;
         }
 
-        static string GetModeCommandForThisHeartRate(XmlDocument triggersXML, int heartBeat)
+        static string GetShowModeForThisHeartRate(XmlDocument triggersXML, int heartBeat)
         {
-            string modeCommand = "";
+            string showMode = "";
 
             XmlNodeList nodeList = triggersXML.GetElementsByTagName("Trigger");
             for (int i = 0; i < nodeList.Count; i++)
             {
-                XmlNode HeartRateLower = triggersXML.GetElementsByTagName("HeartRateLower")[i];
+                XmlNode heartRateLower = triggersXML.GetElementsByTagName("HeartRateLower")[i];
 
-                if (heartBeat >= Convert.ToInt32(HeartRateLower.InnerXml))
+                if (heartBeat >= Convert.ToInt32(heartRateLower.InnerXml))
                 {
-                    XmlNode HeartRateUpper = triggersXML.GetElementsByTagName("HeartRateUpper")[i];
-                    if (heartBeat <= Convert.ToInt32(HeartRateUpper.InnerXml))
+                    XmlNode heartRateUpper = triggersXML.GetElementsByTagName("HeartRateUpper")[i];
+                    if (heartBeat <= Convert.ToInt32(heartRateUpper.InnerXml))
                     {
-                        XmlElement command = (XmlElement)triggersXML.GetElementsByTagName("Command")[i];
-                        modeCommand = command.InnerText;
+                        XmlElement ShowMode = (XmlElement)triggersXML.GetElementsByTagName("ShowMode")[i];
+                        showMode = ShowMode.InnerText;
                         break;
                     }
                    
                 }
             }
-            return modeCommand;
+            return showMode;
+        }
+
+        static string GetCommandForThisShowMode(XmlDocument triggersXML, string showModeName)
+        {
+            string command = "";
+
+            XmlNodeList nodeList = triggersXML.GetElementsByTagName("ShowMode");
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                XmlNode nameElementNode = triggersXML.GetElementsByTagName("Name")[i];
+
+                if (nameElementNode.InnerText == showModeName)
+                {
+                    XmlElement commaElementNode = (XmlElement)triggersXML.GetElementsByTagName("Command")[i];
+                    command = commaElementNode.InnerText;
+                    break;
+                }
+            }
+            return command;
         }
 
 
@@ -92,7 +112,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         {
             var signalHub = GlobalHost.ConnectionManager.GetHubContext<SignalHub>();
             Random random = new Random();
-            while (continueToRead)
+            while (ContinueToRead)
             {
                 signalHub.Clients.All.updateHeartRate(random.Next(50, 90).ToString());  //send
 
@@ -104,7 +124,18 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         private static XmlDocument LoadTriggers()
         {
             XmlDocument xdoc = new XmlDocument();
-            var dataFile = HostingEnvironment.MapPath("~/Database/TimeTriggers.xml");
+            var dataFile = HostingEnvironment.MapPath("~/Database/Triggers.xml");
+            FileStream fileStream = new FileStream(dataFile, FileMode.Open);
+            xdoc.Load(fileStream);
+            fileStream.Close();
+            return xdoc;
+        }
+
+
+        private static XmlDocument LoadCommands()
+        {
+            XmlDocument xdoc = new XmlDocument();
+            var dataFile = HostingEnvironment.MapPath("~/Database/Commands.xml");
             FileStream fileStream = new FileStream(dataFile, FileMode.Open);
             xdoc.Load(fileStream);
             fileStream.Close();

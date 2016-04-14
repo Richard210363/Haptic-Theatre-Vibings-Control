@@ -207,7 +207,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap_theme_Slate.css" />
     <Content Include="Content\Images\loading_spinner.gif" />
-    <Content Include="Database\TimeTriggers.xml">
+    <Content Include="Database\Commands.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\Triggers.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>

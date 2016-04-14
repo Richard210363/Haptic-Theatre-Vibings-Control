@@ -39,12 +39,12 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
 
             if (Global.IsShowLive)
             {
-                ModeChangeTriggering.continueToRead = true;
+                ModeChangeTriggering.ContinueToRead = true;
                 Task.Run(() => { ModeChangeTriggering.ReadTriggers(); });
             }
             else
             {
-                ModeChangeTriggering.continueToRead = false;
+                ModeChangeTriggering.ContinueToRead = false;
             }
             return RedirectToAction("Index", "Live");
         }
@@ -58,12 +58,12 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
 
             if (Global.IsShowLive)
             {
-                ModeChangeTriggering.continueToRead = true;
+                ModeChangeTriggering.ContinueToRead = true;
                 Task.Run(() => { ModeChangeTriggering.StartShow_Dummy(); });
             }
             else
             {
-                ModeChangeTriggering.continueToRead = false;
+                ModeChangeTriggering.ContinueToRead = false;
             }
             return RedirectToAction("Index", "Live");
         }
