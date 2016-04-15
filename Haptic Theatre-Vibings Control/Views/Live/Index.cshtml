@@ -26,18 +26,6 @@
                 @Html.ActionLink("Set Show to Running", "StartShow", "Live", null, new {@class = "btn btn-default"})
             </p>
         }
-        @if (ViewBag.IsShowLive)
-        {
-            <p>
-                @Html.ActionLink("Set Dummy Show to Not Running", "StartDummyShow", "Live", null, new { @class = "btn btn-default" })
-            </p>
-        }
-        else
-        {
-            <p>
-                @Html.ActionLink("Set Dummy Show to Running", "StartDummyShow", "Live", null, new { @class = "btn btn-default" })
-            </p>
-        }
 
     </div>
 
@@ -52,7 +40,7 @@
             <tbody>
             <tr class="info">
                 <td>
-                    @Html.ActionLink("Heart Beat Monitor", "HeartBeatMonitor", "Live", new {@class = "btn - success"})
+                    @Html.ActionLink("Heart Beat Monitor", "HeartBeatMonitor", "Live", new { @class = "btn btn-success" })
                     <h2>
                         <label id="heartbeat">No Input</label>
                     </h2>
@@ -70,57 +58,22 @@
             <tbody>
             <tr class="info">
                 <td>
-                    @Html.ActionLink("Spin Clock", "Mode_002", "Live", new {colourHex = "251346", loopdelay = "200"}, new {@class = "btn - success"})
+                    @Html.ActionLink("Start", "ChangeModeManually", "Live", new { showMode = "ShowMode01" }, new {@class = "btn btn-success", id = "ShowMode01" })
                 </td>
             </tr>
             <tr class="info">
                 <td>
-                    @Html.ActionLink("Spin AntoClock", "Mode_003", "Live", new {colourHex = "8b550f", loopdelay = "50"}, new {@class = "btn - success"})
+                    @Html.ActionLink("Calm", "ChangeModeManually", "Live", new { showMode = "ShowMode02" }, new {@class = "btn btn-success", id = "ShowMode02" })
                 </td>
             </tr>
             <tr class="info">
                 <td>
-                    @Html.ActionLink("Dark Clock", "Mode_004", "Live", new {colourHex = "1a8b0f", loopdelay = "50"}, new {@class = "btn - success"})
+                    @Html.ActionLink("Dance Fury", "ChangeModeManually", "Live", new { showMode = "ShowMode03" }, new {@class = "btn btn-success", id = "ShowMode03" })
                 </td>
             </tr>
             <tr class="info">
                 <td>
-                    @Html.ActionLink("Dark Anti", "Mode_005", "Live", new {colourHex = "0f618b", loopdelay = "10"}, new {@class = "btn - success"})
-                </td>
-            </tr>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Full On Green", "Mode_001", "Live", new {colourHex = "00ff00"}, new {@class = "btn - success"})
-                </td>
-            </tr>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Full On Blue", "Mode_001", "Live", new {colourHex = "0000ff"}, new {@class = "btn - success"})
-                </td>
-            </tr>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Cheer Pom Pom", "Mode_006", "Live", new {colourHex = "8b0f6c", loopdelay = "50"}, new {@class = "btn - success"})
-                </td>
-            </tr>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Happy Trails", "Mode_007", "Live", new {colourHex_01 = "444400", colourHex_02 = "333300", colourHex_03 = "222200", colourHex_04 = "111100", loopdelay = "50"}, new {@class = "btn - success"})
-                </td>
-            </tr>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Buzzin'", "Mode_008", "Live", null, new {@class = "btn - success"})
-                </td>
-            </tr>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Stop Buzzin'", "Mode_009", "Live", null, new {@class = "btn - success"})
-                </td>
-            </tr>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Pom Pom Buzz", "Mode_011", "Live", new {colourHex = "8b0f6c", loopdelay = "120"}, new {@class = "btn - success"})
+                    @Html.ActionLink("Builder", "ChangeModeManually", "Live", new { showMode = "ShowMode04" }, new {@class = "btn btn-success", id = "ShowMode04" })
                 </td>
             </tr>
             </tbody>
@@ -150,11 +103,16 @@
             $.connection.hub.start();
             var ticker = $.connection.signalhub;
 
-            // Add a client-side hub method that the server will call
             ticker.client.updateHeartRate = function(heartRate) {
-                
-                
                 heartbeat.innerHTML = heartRate;
+            }
+
+            ticker.client.setModeActive = function (showMode) {
+                $(document.getElementById(showMode)).removeClass('btn btn-success').addClass('btn btn-warning');
+            }
+
+            ticker.client.setModeNotActive = function (showMode) {
+                $(document.getElementById(showMode)).removeClass('btn btn-warning').addClass('btn btn-success');
             }
             // Start the connection
             $.connection.hub.start();

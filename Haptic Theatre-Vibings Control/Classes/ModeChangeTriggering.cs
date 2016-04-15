@@ -33,8 +33,10 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         public static bool ContinueToRead { get; set; } = false;
         private static readonly IHubContext SignalHub = GlobalHost.ConnectionManager.GetHubContext<SignalHub>();
         private static string _currentCommand ="";
+        private static string _currentShowMode = "";
+        private static string _previousShowMode = "";
 
-        public static void StartShow_Dummy()
+        public static void StartShow()
         {
             int heartBeat = 50;
 
@@ -44,9 +46,14 @@ namespace Haptic_Theatre_Vibings_Control.Classes
                 if (newCommand != _currentCommand)
                 {
                     _currentCommand = newCommand;
+
+                    SignalHub.Clients.All.setModeNotActive(_previousShowMode);
+                    SignalHub.Clients.All.setModeActive(_currentShowMode);
+                    _previousShowMode = _currentShowMode;
                 }
 
                 SignalHub.Clients.All.updateHeartRate(heartBeat.ToString());
+                SignalHub.Clients.All.setModeActive(_currentShowMode);
                 Thread.Sleep(2000);
                 heartBeat++;
             }
@@ -55,11 +62,11 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         static string GetCommand(int heartBeat)
         {
             XmlDocument triggersXML =  LoadTriggers();
-            string showMode = GetShowModeForThisHeartRate(triggersXML, heartBeat);
-
+            _currentShowMode = GetShowModeForThisHeartRate(triggersXML, heartBeat);
+            
             XmlDocument commandsXML = LoadCommands();
 
-            string command = GetCommandForThisShowMode(commandsXML, showMode);
+            string command = GetCommandForThisShowMode(commandsXML, _currentShowMode);
 
             return command;
         }
