@@ -18,7 +18,6 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Haptic_Theatre_Vibings_Control.Classes;
 
-
 namespace Haptic_Theatre_Vibings_Control.Controllers
 {
     public class LiveController : Controller
@@ -56,8 +55,7 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
 
         public ActionResult ChangeModeManually(string showMode)
         {
-            //Get command
-            //send mode change
+            ModeChangeTriggering.ChangeModeByShowModeID(showMode);
             return RedirectToAction("Index", "Live");
         }
 

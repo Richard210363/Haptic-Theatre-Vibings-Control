@@ -15,14 +15,10 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using System.Web;
+
 
 namespace Haptic_Theatre_Vibings_Control.Classes
 {
@@ -44,6 +40,12 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             var response = webRequest.GetResponse();
 
             return response;
+        }
+
+        public static void SendGetCommand(string ip)
+        {
+            WebRequest webRequest = new WebRequest(ip, "GET");
+            webRequest.SendCommand();
         }
 
 

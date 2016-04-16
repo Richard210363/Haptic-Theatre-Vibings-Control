@@ -24,6 +24,7 @@ using System.IO;
 using System.Threading;
 using System.Xml;
 using System.Web.Hosting;
+using Haptic_Theatre_Vibings_Control.Models;
 using Microsoft.AspNet.SignalR;
 
 namespace Haptic_Theatre_Vibings_Control.Classes
@@ -35,6 +36,13 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         private static string _currentCommand ="";
         private static string _currentShowMode = "";
         private static string _previousShowMode = "";
+        private static HttpViewModel _httpViewModel = new HttpViewModel
+        {
+            HttpPortNumber = "50002",
+            HttpRequestType = "Get"
+        };
+
+        #region Public Requests
 
         public static void StartShow()
         {
@@ -47,17 +55,62 @@ namespace Haptic_Theatre_Vibings_Control.Classes
                 {
                     _currentCommand = newCommand;
 
-                    SignalHub.Clients.All.setModeNotActive(_previousShowMode);
-                    SignalHub.Clients.All.setModeActive(_currentShowMode);
-                    _previousShowMode = _currentShowMode;
+                    SwitchDisplayByModeID(_currentShowMode);
+
+                    SendCommand(_currentCommand);
                 }
 
                 SignalHub.Clients.All.updateHeartRate(heartBeat.ToString());
                 SignalHub.Clients.All.setModeActive(_currentShowMode);
+                
                 Thread.Sleep(2000);
                 heartBeat++;
             }
         }
+
+        public static void ChangeModeByShowModeID(string showModeID)
+        {
+            XmlDocument commandsXML = LoadCommands();
+            string command = GetCommandForThisShowMode(commandsXML, showModeID);
+            SendCommand(command);
+
+            Thread.Sleep(2000);
+
+            SwitchDisplayByModeID(showModeID);
+        }
+
+        #endregion
+
+        #region UI
+
+        private static void SwitchDisplayByModeID(string showModeID)
+        {
+            _currentShowMode = showModeID;
+            SignalHub.Clients.All.setModeNotActive(_previousShowMode);
+            SignalHub.Clients.All.setModeActive(_currentShowMode);
+            _previousShowMode = _currentShowMode;
+        }
+
+        #endregion
+
+        #region Network
+
+        private static void SendCommand(string currentCommand)
+        {
+            XmlDocument IPsXML = LoadIPs();
+            XmlNodeList nodeList = IPsXML.GetElementsByTagName("IP");
+
+            foreach (XmlNode node in  nodeList)
+            {
+                string ip = node.InnerText;
+                _httpViewModel.HttpRequest = ip + currentCommand;
+                HTTPManager.SendGetCommand(_httpViewModel.HttpRequest);
+            }
+        }
+
+        #endregion
+
+        #region Get Commands
 
         static string GetCommand(int heartBeat)
         {
@@ -114,7 +167,6 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return command;
         }
 
-
         public static void ReadTriggers()
         {
             var signalHub = GlobalHost.ConnectionManager.GetHubContext<SignalHub>();
@@ -128,6 +180,10 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             }
         }
 
+        #endregion
+
+        #region Read database
+
         private static XmlDocument LoadTriggers()
         {
             XmlDocument xdoc = new XmlDocument();
@@ -138,7 +194,6 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return xdoc;
         }
 
-
         private static XmlDocument LoadCommands()
         {
             XmlDocument xdoc = new XmlDocument();
@@ -148,5 +203,17 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             fileStream.Close();
             return xdoc;
         }
+
+        private static XmlDocument LoadIPs()
+        {
+            XmlDocument xdoc = new XmlDocument();
+            var dataFile = HostingEnvironment.MapPath("~/Database/IPs.xml");
+            FileStream fileStream = new FileStream(dataFile, FileMode.Open);
+            xdoc.Load(fileStream);
+            fileStream.Close();
+            return xdoc;
+        }
+
+        #endregion
     }
 }

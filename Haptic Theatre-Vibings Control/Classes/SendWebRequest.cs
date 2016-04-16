@@ -23,12 +23,9 @@
 
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Web;
 
 namespace Haptic_Theatre_Vibings_Control.Classes
 {
@@ -128,7 +125,32 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             catch (Exception e)
             {
                 return "Error: " + e.Message;
+            }
 
+        }
+
+        public void SendCommand()
+        {
+            System.Net.ServicePointManager.Expect100Continue = false;
+            try
+            {
+                request.BeginGetResponse(CommandSent, request); 
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        private static void CommandSent(IAsyncResult ar)
+        {
+            try
+            {
+                var request = (HttpWebRequest)ar.AsyncState;
+                var response = request.EndGetResponse(ar);
+            }
+            catch (Exception e)
+            {
 
             }
 
