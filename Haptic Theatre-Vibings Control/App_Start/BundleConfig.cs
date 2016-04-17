@@ -9,7 +9,8 @@ namespace Haptic_Theatre_Vibings_Control
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-1.10.2.js"));
+                        "~/Scripts/jquery-1.10.2.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
             "~/Scripts/jquery.signalR-2.2.0.js"));

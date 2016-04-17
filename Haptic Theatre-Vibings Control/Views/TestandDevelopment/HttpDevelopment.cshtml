@@ -4,8 +4,8 @@
 @Html.Hidden("view", @"~\Views\TestandDevelopment\HttpDevelopment.cshtml")
 
 <div class="jumbotron">
-    <h1>Http Development</h1>
     @{ Html.RenderPartial("_ShowRunning"); }
+    <h1>Http Development </h1>   
     <ol class="breadcrumb">
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
         <li>@Html.ActionLink("Development", "Index", "TestandDevelopment")</li>

@@ -73,9 +73,6 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             XmlDocument commandsXML = LoadCommands();
             string command = GetCommandForThisShowMode(commandsXML, showModeID);
             SendCommand(command);
-
-            Thread.Sleep(2000);
-
             SwitchDisplayByModeID(showModeID);
         }
 

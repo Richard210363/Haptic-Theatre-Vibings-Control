@@ -53,13 +53,18 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
             return RedirectToAction("Index", "Live");
         }
 
-        public ActionResult ChangeModeManually(string showMode)
+        public JsonResult ChangeModeManually(string showMode)
         {
             ModeChangeTriggering.ChangeModeByShowModeID(showMode);
-            return RedirectToAction("Index", "Live");
+            return Json("Done");
         }
 
- 
+        public JsonResult DoThing(string ShowMode)
+        {
+            return Json("x");
+        }
+
+
 
         #endregion
     }

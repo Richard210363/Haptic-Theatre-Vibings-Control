@@ -1,10 +1,11 @@
 ﻿@Html.Hidden("view", @"~\Views\Live\Index.cshtml")
 
 <div class="jumbotron">
+    @{ Html.RenderPartial("_ShowRunning"); }
     <h1>
         Live Show
     </h1>
-    @{ Html.RenderPartial("_ShowRunning"); }
+
     <ol class="breadcrumb">
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
         <li class="active">Live Show</li>
@@ -26,7 +27,6 @@
                 @Html.ActionLink("Set Show to Running", "StartShow", "Live", null, new {@class = "btn btn-default"})
             </p>
         }
-
     </div>
 
     <div class="col-md-4">
@@ -49,35 +49,49 @@
             </tbody>
         </table>
 
-        <table class="table table-striped table-hover ">
-            <thead>
-            <tr>
-                <th>Modes in Show</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Start", "ChangeModeManually", "Live", new { showMode = "ShowMode01" }, new {@class = "btn btn-success", id = "ShowMode01" })
-                </td>
-            </tr>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Calm", "ChangeModeManually", "Live", new { showMode = "ShowMode02" }, new {@class = "btn btn-success", id = "ShowMode02" })
-                </td>
-            </tr>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Dance Fury", "ChangeModeManually", "Live", new { showMode = "ShowMode03" }, new {@class = "btn btn-success", id = "ShowMode03" })
-                </td>
-            </tr>
-            <tr class="info">
-                <td>
-                    @Html.ActionLink("Builder", "ChangeModeManually", "Live", new { showMode = "ShowMode04" }, new {@class = "btn btn-success", id = "ShowMode04" })
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <tr class="info">
+            <td>
+                @using (Ajax.BeginForm("ChangeModeManually", new AjaxOptions
+                {
+                    HttpMethod = "POST"
+                }))
+                {
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                            <tr>
+                                <th>Modes in Show</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="info">
+                                <td>
+                                    <button type="submit" name="showMode" class="btn btn-success" id="ShowMode01" value="ShowMode01">Calm</button>
+                                </td>
+                            </tr>
+                            <tr class="info">
+                                <td>
+                                    <button type="submit" name="showMode" class="btn btn-success" id="ShowMode02" value="ShowMode02">Storm</button>
+                                </td>
+                            </tr>
+                            <tr class="info">
+                                <td>
+                                    <button type="submit" name="showMode" class="btn btn-success" id="ShowMode03" value="ShowMode03">Respite</button>
+                                </td>
+                            </tr>
+                            <tr class="info">
+                                <td>
+                                    <button type="submit" name="showMode" class="btn btn-success" id="ShowMode04" value="ShowMode04">Delivery</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            </td>
+        </tr>
+
+
+
+
     </div>
 
     <div class="col-md-4">
@@ -87,6 +101,8 @@
         </p>
     </div>
 </div>
+
+
 
 
 
