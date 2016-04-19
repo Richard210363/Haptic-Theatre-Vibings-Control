@@ -46,10 +46,12 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         public static void StartShow()
         {
-            int heartBeat = 50;
+            int count = 0;
 
             while (ContinueToRead)
             {
+                int heartBeat = GetHeartBeat(count);
+
                 string newCommand = GetCommand(heartBeat);
                 if (newCommand != _currentCommand)
                 {
@@ -63,9 +65,40 @@ namespace Haptic_Theatre_Vibings_Control.Classes
                 SignalHub.Clients.All.updateHeartRate(heartBeat.ToString());
                 SignalHub.Clients.All.setModeActive(_currentShowMode);
                 
-                Thread.Sleep(2000);
-                heartBeat++;
+                Thread.Sleep(5000);
+                count = count + 5;
+
+                //heartRate++;
             }
+        }
+
+        private static int GetHeartBeat(int count)
+        {
+            XmlDocument heartRatesXML = LoadHeartRate();
+            int heartBeat = GetHeartRateForThisCount(heartRatesXML, count);
+
+
+            return heartBeat;
+        }
+
+        private static int GetHeartRateForThisCount(XmlDocument heartRatesXML, int count)
+        {
+            string showMode = "";
+            int heartRate = 0;
+
+            XmlNodeList nodeList = heartRatesXML.GetElementsByTagName("TimeCode");
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                XmlNode countXmlNode = heartRatesXML.GetElementsByTagName("count")[i];
+
+                if (count == Convert.ToInt32(countXmlNode.InnerXml))
+                {
+                    XmlNode heartRateXMLNode = heartRatesXML.GetElementsByTagName("HeartRate")[i];
+                    heartRate = Convert.ToInt32(heartRateXMLNode.InnerXml);
+
+                }
+            }
+            return heartRate;
         }
 
         public static void ChangeModeByShowModeID(string showModeID)
@@ -121,7 +154,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return command;
         }
 
-        static string GetShowModeForThisHeartRate(XmlDocument triggersXML, int heartBeat)
+        static string GetShowModeForThisHeartRate(XmlDocument triggersXML, int heartRate)
         {
             string showMode = "";
 
@@ -130,10 +163,10 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             {
                 XmlNode heartRateLower = triggersXML.GetElementsByTagName("HeartRateLower")[i];
 
-                if (heartBeat >= Convert.ToInt32(heartRateLower.InnerXml))
+                if (heartRate >= Convert.ToInt32(heartRateLower.InnerXml))
                 {
                     XmlNode heartRateUpper = triggersXML.GetElementsByTagName("HeartRateUpper")[i];
-                    if (heartBeat <= Convert.ToInt32(heartRateUpper.InnerXml))
+                    if (heartRate <= Convert.ToInt32(heartRateUpper.InnerXml))
                     {
                         XmlElement ShowMode = (XmlElement)triggersXML.GetElementsByTagName("ShowMode")[i];
                         showMode = ShowMode.InnerText;
@@ -180,6 +213,16 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         #endregion
 
         #region Read database
+
+        private static XmlDocument LoadHeartRate()
+        {
+            XmlDocument xdoc = new XmlDocument();
+            var dataFile = HostingEnvironment.MapPath("~/Database/HeartRates.xml");
+            FileStream fileStream = new FileStream(dataFile, FileMode.Open);
+            xdoc.Load(fileStream);
+            fileStream.Close();
+            return xdoc;
+        }
 
         private static XmlDocument LoadTriggers()
         {
