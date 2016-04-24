@@ -2,55 +2,55 @@
 <HeartRates>
   <TimeCode>
     <count>0</count>
-    <HeartRate>65</HeartRate>
+    <HeartRate>73</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>5</count>
-    <HeartRate>65</HeartRate>
+    <HeartRate>72</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>10</count>
-    <HeartRate>65</HeartRate>
+    <HeartRate>70</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>15</count>
-    <HeartRate>60</HeartRate>
+    <HeartRate>69</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>20</count>
-    <HeartRate>60</HeartRate>
+    <HeartRate>70</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>25</count>
-    <HeartRate>55</HeartRate>
+    <HeartRate>70</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>30</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>66</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>35</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>64</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>40</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>62</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>45</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>60</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>50</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>58</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>55</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>56</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>60</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>53</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>65</count>
@@ -66,7 +66,7 @@
   </TimeCode>
   <TimeCode>
     <count>80</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>52</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>85</count>
@@ -90,158 +90,158 @@
   </TimeCode>
   <TimeCode>
     <count>110</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>51</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>115</count>
-    <HeartRate>55</HeartRate>
+    <HeartRate>50</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>120</count>
-    <HeartRate>55</HeartRate>
+    <HeartRate>50</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>125</count>
-    <HeartRate>60</HeartRate>
+    <HeartRate>52</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>130</count>
-    <HeartRate>60</HeartRate>
+    <HeartRate>56</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>135</count>
-    <HeartRate>65</HeartRate>
+    <HeartRate>58</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>140</count>
-    <HeartRate>70</HeartRate>
+    <HeartRate>62</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>145</count>
-    <HeartRate>75</HeartRate>
+    <HeartRate>68</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>150</count>
-    <HeartRate>80</HeartRate>
+    <HeartRate>73</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>155</count>
-    <HeartRate>85</HeartRate>
+    <HeartRate>81</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>160</count>
-    <HeartRate>90</HeartRate>
+    <HeartRate>88</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>165</count>
-    <HeartRate>90</HeartRate>
+    <HeartRate>86</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>170</count>
-    <HeartRate>80</HeartRate>
+    <HeartRate>87</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>175</count>
-    <HeartRate>75</HeartRate>
+    <HeartRate>92</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>180</count>
-    <HeartRate>75</HeartRate>
+    <HeartRate>98</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>185</count>
-    <HeartRate>70</HeartRate>
+    <HeartRate>102</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>190</count>
-    <HeartRate>70</HeartRate>
+    <HeartRate>106</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>195</count>
-    <HeartRate>70</HeartRate>
+    <HeartRate>108</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>200</count>
-    <HeartRate>75</HeartRate>
+    <HeartRate>106</HeartRate>
   </TimeCode>
   <TimeCode>
-    <count>305</count>
-    <HeartRate>80</HeartRate>
+    <count>205</count>
+    <HeartRate>110</HeartRate>
   </TimeCode>
   <TimeCode>
-    <count>310</count>
+    <count>210</count>
+    <HeartRate>112</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>215</count>
+    <HeartRate>108</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>220</count>
+    <HeartRate>109</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>225</count>
+    <HeartRate>112</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>230</count>
+    <HeartRate>116</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>235</count>
+    <HeartRate>122</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>240</count>
+    <HeartRate>124</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>245</count>
+    <HeartRate>128</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>250</count>
+    <HeartRate>123</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>255</count>
+    <HeartRate>124</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>260</count>
+    <HeartRate>120</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>265</count>
+    <HeartRate>118</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>270</count>
+    <HeartRate>116</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>275</count>
+    <HeartRate>110</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>280</count>
+    <HeartRate>102</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>285</count>
+    <HeartRate>96</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>290</count>
+    <HeartRate>90</HeartRate>
+  </TimeCode>
+  <TimeCode>
+    <count>295</count>
     <HeartRate>85</HeartRate>
   </TimeCode>
   <TimeCode>
-    <count>315</count>
-    <HeartRate>90</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>320</count>
-    <HeartRate>95</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>325</count>
-    <HeartRate>100</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>330</count>
-    <HeartRate>100</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>335</count>
-    <HeartRate>110</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>340</count>
-    <HeartRate>110</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>345</count>
-    <HeartRate>110</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>350</count>
-    <HeartRate>110</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>355</count>
-    <HeartRate>110</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>360</count>
-    <HeartRate>110</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>365</count>
-    <HeartRate>120</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>370</count>
-    <HeartRate>120</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>375</count>
-    <HeartRate>110</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>380</count>
-    <HeartRate>100</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>385</count>
-    <HeartRate>95</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>390</count>
-    <HeartRate>90</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>395</count>
-    <HeartRate>80</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>400</count>
+    <count>300</count>
     <HeartRate>80</HeartRate>
   </TimeCode>
 </HeartRates>

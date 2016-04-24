@@ -66,7 +66,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
                 SignalHub.Clients.All.setModeActive(_currentShowMode);
                 
                 Thread.Sleep(5000);
-                count = count + 5;
+                count = count + 30;
 
                 //heartRate++;
             }
@@ -134,7 +134,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             {
                 string ip = node.InnerText;
                 _httpViewModel.HttpRequest = ip + currentCommand;
-                HTTPManager.SendGetCommand(_httpViewModel.HttpRequest);
+                HTTPManager.SendModeCommand(_httpViewModel.HttpRequest);
             }
         }
 

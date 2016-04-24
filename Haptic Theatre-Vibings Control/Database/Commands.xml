@@ -2,18 +2,18 @@
 <ShowModes>
   <ShowMode>
     <Name>ShowMode01</Name>
-    <Command>?mode=002&amp;colour_001=%23004400&amp;loopdelay=50&amp;brightness=100</Command>
+    <Command>?mode=013&amp;colour_001=%2322bb33&amp;loopdelay=50&amp;brightness=50&amp;variation=50</Command>
   </ShowMode>
   <ShowMode>
     <Name>ShowMode02</Name>
-    <Command>?mode=007&amp;colour_001=%23444400&amp;colour_002=%23333300&amp;colour_003=%23222200&amp;colour_004=%23111100&amp;loopdelay=100&amp;brightness=100</Command>
+    <Command>?mode=013&amp;colour_001=%2322bb33&amp;loopdelay=30&amp;brightness=50&amp;variation=70</Command>
   </ShowMode>
   <ShowMode>
     <Name>ShowMode03</Name>
-    <Command>?mode=018&amp;colour_trickle=%23110033&amp;colour_fill_mid=%23330055&amp;colour_fill_final=%238800aa&amp;loopdelay=100&amp;trickledelay=100&amp;enddelay=150&amp;brightness=50</Command>
+    <Command>?mode=013&amp;colour_001=%232233bb&amp;loopdelay=10&amp;brightness=50&amp;variation=30</Command>
   </ShowMode>
   <ShowMode>
     <Name>ShowMode04</Name>
-    <Command>?mode=005&amp;colour_001=%23123542&amp;loopdelay=50&amp;brightness=100</Command>
+    <Command>?mode=013&amp;colour_001=%232233bb&amp;loopdelay=30&amp;brightness=50&amp;variation=70</Command>
   </ShowMode>
 </ShowModes>

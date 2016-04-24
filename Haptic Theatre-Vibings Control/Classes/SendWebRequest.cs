@@ -26,32 +26,30 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Haptic_Theatre_Vibings_Control.Classes
 {
     public class WebRequest
     {
-        private System.Net.WebRequest request;
-        private Stream dataStream;
-
-        private string status;
+        private readonly System.Net.WebRequest request;
+        private Stream _dataStream;
+        private string _status;
 
         public String Status
         {
             get
             {
-                return status;
+                return _status;
             }
             set
             {
-                status = value;
+                _status = value;
             }
         }
 
         public WebRequest(string url)
         {
-            // Create a request using a URL that can receive a post.
-
             request = System.Net.WebRequest.Create(url);
         }
 
@@ -61,7 +59,6 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
             if (method.Equals("GET") || method.Equals("POST"))
             {
-                // Set the Method property of the request to POST.
                 request.Method = method;
             }
             else
@@ -85,20 +82,19 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             request.ContentLength = byteArray.Length;
 
             // Get the request stream.
-            dataStream = request.GetRequestStream();
+            _dataStream = request.GetRequestStream();
 
             // Write the data to the request stream.
-            dataStream.Write(byteArray, 0, byteArray.Length);
+            _dataStream.Write(byteArray, 0, byteArray.Length);
 
             // Close the Stream object.
-            dataStream.Close();
+            _dataStream.Close();
 
         }
 
         public string GetResponse()
         {
             System.Net.ServicePointManager.Expect100Continue = false;
-
             try
             {
             // Get the original response.
@@ -107,17 +103,17 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             this.Status = ((HttpWebResponse)response).StatusDescription;
 
             // Get the stream containing all content returned by the requested server.
-            dataStream = response.GetResponseStream();
+            _dataStream = response.GetResponseStream();
 
             // Open the stream using a StreamReader for easy access.
-            StreamReader reader = new StreamReader(dataStream);
+            StreamReader reader = new StreamReader(_dataStream);
 
             // Read the content fully up to the end.
             string responseFromServer = reader.ReadToEnd();
 
             // Clean up the streams.
             reader.Close();
-            dataStream.Close();
+            _dataStream.Close();
             response.Close();
 
             return responseFromServer;
@@ -134,11 +130,11 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             System.Net.ServicePointManager.Expect100Continue = false;
             try
             {
-                request.BeginGetResponse(CommandSent, request); 
+                WebResponse response = request.GetResponse();
+                response.Close();
             }
             catch (Exception e)
             {
-
             }
         }
 

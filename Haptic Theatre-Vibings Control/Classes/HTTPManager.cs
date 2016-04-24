@@ -18,6 +18,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 
 
 namespace Haptic_Theatre_Vibings_Control.Classes
@@ -42,10 +43,10 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return response;
         }
 
-        public static void SendGetCommand(string ip)
+        public static void SendModeCommand(string ip)
         {
-            WebRequest webRequest = new WebRequest(ip, "GET");
-            webRequest.SendCommand();
+            WebRequest webRequest = new WebRequest(ip, "POST");
+            Task.Run(() => webRequest.SendCommand());  //Async as we don't care about the response
         }
 
 
