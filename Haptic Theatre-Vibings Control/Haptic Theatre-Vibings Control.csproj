@@ -207,11 +207,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap_theme_Slate.css" />
     <Content Include="Content\Images\loading_spinner.gif" />
-    <Content Include="Database\HeartRates - Copy.xml">
+    <Content Include="Database\HeartRates.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Database\HeartRates.xml">
+    <Content Include="Database\HeartRates - Test.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

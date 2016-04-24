@@ -1,19 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ShowModes>
   <ShowMode>
-    <Name>ShowMode01</Name>
-    <Command>?mode=013&amp;colour_001=%2322bb33&amp;loopdelay=50&amp;brightness=50&amp;variation=50</Command>
+    <Name>ShowMode00</Name>
+    <Command>?mode=015</Command>
   </ShowMode>
   <ShowMode>
+    <Name>ShowMode01</Name>
+    <Command>?mode=021&amp;colour_001=%23187239&amp;loopdelay=800&amp;brightness=20&amp;variation=30</Command>
+  </ShowMode>
+ <ShowMode>
     <Name>ShowMode02</Name>
-    <Command>?mode=013&amp;colour_001=%2322bb33&amp;loopdelay=30&amp;brightness=50&amp;variation=70</Command>
+    <Command>?mode=021&amp;colour_001=%23207038&amp;loopdelay=600&amp;brightness=40&amp;variation=40</Command>
   </ShowMode>
   <ShowMode>
     <Name>ShowMode03</Name>
-    <Command>?mode=013&amp;colour_001=%232233bb&amp;loopdelay=10&amp;brightness=50&amp;variation=30</Command>
+    <Command>?mode=021&amp;colour_001=%23266837&amp;loopdelay=600&amp;brightness=60&amp;variation=60</Command>
   </ShowMode>
   <ShowMode>
     <Name>ShowMode04</Name>
-    <Command>?mode=013&amp;colour_001=%232233bb&amp;loopdelay=30&amp;brightness=50&amp;variation=70</Command>
+    <Command>?mode=006&amp;colour_001=%23326232&amp;loopdelay=350&amp;brightness=60</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode05</Name>
+    <Command>?mode=006&amp;colour_001=%23345826&amp;loopdelay=300&amp;brightness=60</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode06</Name>
+    <Command>?mode=006&amp;colour_001=%23385424&amp;loopdelay=250&amp;brightness=65</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode07</Name>
+    <Command>?mode=006&amp;colour_001=%23425222&amp;loopdelay=200&amp;brightness=70</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode08</Name>
+    <Command>?mode=006&amp;colour_001=%23444820&amp;loopdelay=180&amp;brightness=75</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode09</Name>
+    <Command>?mode=006&amp;colour_001=%23484418&amp;loopdelay=160&amp;brightness=80</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode10</Name>
+    <Command>?mode=006&amp;colour_001=%23524216&amp;loopdelay=140&amp;brightness=85</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode11</Name>
+    <Command>?mode=006&amp;colour_001=%23543814&amp;loopdelay=120&amp;brightness=90</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode13</Name>
+    <Command>?mode=006&amp;colour_001=%23623010&amp;loopdelay=80&amp;brightness=100</Command>
   </ShowMode>
 </ShowModes>

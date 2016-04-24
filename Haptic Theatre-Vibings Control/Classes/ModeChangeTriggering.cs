@@ -66,10 +66,11 @@ namespace Haptic_Theatre_Vibings_Control.Classes
                 SignalHub.Clients.All.setModeActive(_currentShowMode);
                 
                 Thread.Sleep(5000);
-                count = count + 30;
+                count = count + 5;
 
                 //heartRate++;
             }
+                count = 0;
         }
 
         private static int GetHeartBeat(int count)
