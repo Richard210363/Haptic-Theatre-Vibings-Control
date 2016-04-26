@@ -44,6 +44,10 @@
                     <h2>
                         <label id="heartbeat">No Input</label>
                     </h2>
+                    @Html.ActionLink("Show Mode", "HeartBeatMonitor", "Live", new { @class = "btn btn-success" })
+                    <h2>
+                        <label id="showmode">No Input</label>
+                    </h2>
                 </td>
             </tr>
             </tbody>
@@ -114,6 +118,7 @@
     <script type="text/javascript">
         
         var heartbeat = document.getElementById('heartbeat');
+        var showmode = document.getElementById('showmode');
 
     $(function () {
             $.connection.hub.start();
@@ -121,6 +126,10 @@
 
             ticker.client.updateHeartRate = function(heartRate) {
                 heartbeat.innerHTML = heartRate;
+            }
+
+            ticker.client.updateShowMode = function (showMode) {
+                showmode.innerHTML = showMode;
             }
 
             ticker.client.setModeActive = function (showMode) {

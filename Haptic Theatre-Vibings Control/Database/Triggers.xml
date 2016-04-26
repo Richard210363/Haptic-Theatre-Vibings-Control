@@ -8,7 +8,7 @@
   <Trigger>
     <HeartRateLower>49</HeartRateLower>
     <HeartRateUpper>50</HeartRateUpper>
-    <ShowMode>ShowMode01</ShowMode>
+    <ShowMode>MultiMode01</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>51</HeartRateLower>
@@ -64,6 +64,7 @@
     <HeartRateLower>71</HeartRateLower>
     <HeartRateUpper>72</HeartRateUpper>
     <ShowMode>ShowMode12</ShowMode>
+    <!--<ShowMode>MultiMode01</ShowMode>-->
   </Trigger>
   <Trigger>
     <HeartRateLower>73</HeartRateLower>
@@ -103,111 +104,106 @@
   <Trigger>
     <HeartRateLower>87</HeartRateLower>
     <HeartRateUpper>88</HeartRateUpper>
-    <ShowMode>ShowMode02</ShowMode>
+    <ShowMode>ShowMode20</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>89</HeartRateLower>
     <HeartRateUpper>90</HeartRateUpper>
-    <ShowMode>ShowMode20</ShowMode>
+    <ShowMode>ShowMode21</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>91</HeartRateLower>
     <HeartRateUpper>92</HeartRateUpper>
-    <ShowMode>ShowMode21</ShowMode>
+    <ShowMode>ShowMode22</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>93</HeartRateLower>
     <HeartRateUpper>94</HeartRateUpper>
-    <ShowMode>ShowMode22</ShowMode>
+    <ShowMode>ShowMode23</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>95</HeartRateLower>
     <HeartRateUpper>96</HeartRateUpper>
-    <ShowMode>ShowMode23</ShowMode>
+    <ShowMode>ShowMode24</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>97</HeartRateLower>
     <HeartRateUpper>98</HeartRateUpper>
-    <ShowMode>ShowMode24</ShowMode>
+    <ShowMode>ShowMode25</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>99</HeartRateLower>
     <HeartRateUpper>100</HeartRateUpper>
-    <ShowMode>ShowMode25</ShowMode>
+    <ShowMode>ShowMode26</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>101</HeartRateLower>
     <HeartRateUpper>102</HeartRateUpper>
-    <ShowMode>ShowMode26</ShowMode>
+    <ShowMode>ShowMode27</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>103</HeartRateLower>
     <HeartRateUpper>104</HeartRateUpper>
-    <ShowMode>ShowMode27</ShowMode>
+    <ShowMode>ShowMode28</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>105</HeartRateLower>
     <HeartRateUpper>106</HeartRateUpper>
-    <ShowMode>ShowMode28</ShowMode>
+    <ShowMode>ShowMode29</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>107</HeartRateLower>
     <HeartRateUpper>108</HeartRateUpper>
-    <ShowMode>ShowMode29</ShowMode>
+    <ShowMode>ShowMode30</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>109</HeartRateLower>
     <HeartRateUpper>110</HeartRateUpper>
-    <ShowMode>ShowMode30</ShowMode>
+    <ShowMode>ShowMode31</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>111</HeartRateLower>
     <HeartRateUpper>112</HeartRateUpper>
-    <ShowMode>ShowMode31</ShowMode>
+    <ShowMode>ShowMode32</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>113</HeartRateLower>
     <HeartRateUpper>114</HeartRateUpper>
-    <ShowMode>ShowMode32</ShowMode>
+    <ShowMode>ShowMode33</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>115</HeartRateLower>
     <HeartRateUpper>116</HeartRateUpper>
-    <ShowMode>ShowMode33</ShowMode>
+    <ShowMode>ShowMode34</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>117</HeartRateLower>
     <HeartRateUpper>118</HeartRateUpper>
-    <ShowMode>ShowMode34</ShowMode>
+    <ShowMode>ShowMode35</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>119</HeartRateLower>
     <HeartRateUpper>120</HeartRateUpper>
-    <ShowMode>ShowMode35</ShowMode>
+    <ShowMode>ShowMode36</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>121</HeartRateLower>
     <HeartRateUpper>122</HeartRateUpper>
-    <ShowMode>ShowMode36</ShowMode>
+    <ShowMode>ShowMode37</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>123</HeartRateLower>
     <HeartRateUpper>124</HeartRateUpper>
-    <ShowMode>ShowMode37</ShowMode>
+    <ShowMode>ShowMode38</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>125</HeartRateLower>
     <HeartRateUpper>126</HeartRateUpper>
-    <ShowMode>ShowMode38</ShowMode>
+    <ShowMode>ShowMode39</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>127</HeartRateLower>
     <HeartRateUpper>128</HeartRateUpper>
-    <ShowMode>ShowMode39</ShowMode>
-  </Trigger>
-  <Trigger>
-    <HeartRateLower>129</HeartRateLower>
-    <HeartRateUpper>130</HeartRateUpper>
     <ShowMode>ShowMode40</ShowMode>
   </Trigger>
 </Triggers>

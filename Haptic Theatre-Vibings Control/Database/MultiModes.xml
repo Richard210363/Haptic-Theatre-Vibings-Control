@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MultiModes>
+  <MultiMode Name="MultiMode01" Delay="3000">
+    <ShowMode>ShowMode101</ShowMode>
+    <ShowMode>ShowMode102</ShowMode>
+    <ShowMode>ShowMode103</ShowMode>
+    <ShowMode>ShowMode104</ShowMode>
+    <ShowMode>ShowMode105</ShowMode>
+  </MultiMode>  
+</MultiModes>

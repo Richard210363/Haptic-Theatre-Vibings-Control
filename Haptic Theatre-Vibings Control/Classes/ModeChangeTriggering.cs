@@ -36,7 +36,9 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         private static string _currentCommand ="";
         private static string _currentShowMode = "";
         private static string _previousShowMode = "";
-        private static HttpViewModel _httpViewModel = new HttpViewModel
+        private static string _currentmultiModeName = "";
+        private static string _previousmultiModeName = "";
+        private static readonly HttpViewModel _httpViewModel = new HttpViewModel
         {
             HttpPortNumber = "50002",
             HttpRequestType = "Get"
@@ -51,8 +53,8 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             while (ContinueToRead)
             {
                 int heartBeat = GetHeartBeat(count);
-
                 string newCommand = GetCommand(heartBeat);
+
                 if (newCommand != _currentCommand)
                 {
                     _currentCommand = newCommand;
@@ -63,12 +65,11 @@ namespace Haptic_Theatre_Vibings_Control.Classes
                 }
 
                 SignalHub.Clients.All.updateHeartRate(heartBeat.ToString());
+                SignalHub.Clients.All.updateShowMode(_currentShowMode);
                 SignalHub.Clients.All.setModeActive(_currentShowMode);
                 
                 Thread.Sleep(5000);
                 count = count + 5;
-
-                //heartRate++;
             }
                 count = 0;
         }
@@ -145,14 +146,54 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         static string GetCommand(int heartBeat)
         {
+            string command = _currentCommand;
+
             XmlDocument triggersXML =  LoadTriggers();
             _currentShowMode = GetShowModeForThisHeartRate(triggersXML, heartBeat);
+
+            if (_currentShowMode.Contains("MultiMode"))
+            {
+                if (_currentShowMode != _previousShowMode)
+                {
+                    XmlDocument multiModesXML = LoadMultiModes();
+                    GetShowModesForThisMultiMode(multiModesXML, _currentShowMode);
+                    _previousmultiModeName = _currentShowMode;
+                }
+            }
+            else
+            {
+                XmlDocument commandsXML = LoadCommands();
+
+                command = GetCommandForThisShowMode(commandsXML, _currentShowMode);                
+            }
             
-            XmlDocument commandsXML = LoadCommands();
-
-            string command = GetCommandForThisShowMode(commandsXML, _currentShowMode);
-
             return command;
+        }
+
+
+        static string GetShowModesForThisMultiMode(XmlDocument multiModesXML, string multiModeName)
+        {
+            XmlDocument commandsXML = LoadCommands();
+            XmlNodeList nodeList = multiModesXML.GetElementsByTagName("MultiMode");
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                XmlAttributeCollection xmlAttributeCollection = nodeList[i].Attributes;
+
+                if (xmlAttributeCollection["Name"].Value == multiModeName)
+                {
+                    int delay = Convert.ToInt32(xmlAttributeCollection["Delay"].Value);
+                    XmlNodeList showModeNodes = nodeList[i].ChildNodes;
+                    foreach (XmlNode showModeNode in showModeNodes)
+                    {
+                        string showMode = showModeNode.InnerText;
+                        var command = GetCommandForThisShowMode(commandsXML, showMode);
+                        SendCommand(command);
+                        Thread.Sleep(delay);
+                    }
+                    break;
+                }
+            }
+            return _currentCommand;  //acts to prevent main loop sending a command
         }
 
         static string GetShowModeForThisHeartRate(XmlDocument triggersXML, int heartRate)
@@ -190,8 +231,8 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
                 if (nameElementNode.InnerText == showModeName)
                 {
-                    XmlElement commaElementNode = (XmlElement)triggersXML.GetElementsByTagName("Command")[i];
-                    command = commaElementNode.InnerText;
+                    XmlElement commandElementNode = (XmlElement)triggersXML.GetElementsByTagName("Command")[i];
+                    command = commandElementNode.InnerText;
                     break;
                 }
             }
@@ -249,6 +290,16 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         {
             XmlDocument xdoc = new XmlDocument();
             var dataFile = HostingEnvironment.MapPath("~/Database/IPs.xml");
+            FileStream fileStream = new FileStream(dataFile, FileMode.Open);
+            xdoc.Load(fileStream);
+            fileStream.Close();
+            return xdoc;
+        }
+
+        private static XmlDocument LoadMultiModes()
+        {
+            XmlDocument xdoc = new XmlDocument();
+            var dataFile = HostingEnvironment.MapPath("~/Database/MultiModes.xml");
             FileStream fileStream = new FileStream(dataFile, FileMode.Open);
             xdoc.Load(fileStream);
             fileStream.Close();
