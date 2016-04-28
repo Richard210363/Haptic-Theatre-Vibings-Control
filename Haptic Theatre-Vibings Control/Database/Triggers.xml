@@ -8,42 +8,42 @@
   <Trigger>
     <HeartRateLower>49</HeartRateLower>
     <HeartRateUpper>50</HeartRateUpper>
-    <ShowMode>MultiMode01</ShowMode>
+    <ShowMode>ShowMode01</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>51</HeartRateLower>
     <HeartRateUpper>52</HeartRateUpper>
-    <ShowMode>ShowMode02</ShowMode>
+    <ShowMode>ShowMode01</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>53</HeartRateLower>
     <HeartRateUpper>54</HeartRateUpper>
-    <ShowMode>ShowMode03</ShowMode>
+    <ShowMode>ShowMode02</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>55</HeartRateLower>
     <HeartRateUpper>56</HeartRateUpper>
-    <ShowMode>ShowMode04</ShowMode>
+    <ShowMode>ShowMode02</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>57</HeartRateLower>
     <HeartRateUpper>58</HeartRateUpper>
-    <ShowMode>ShowMode05</ShowMode>
+    <ShowMode>MultiMode01</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>59</HeartRateLower>
     <HeartRateUpper>60</HeartRateUpper>
-    <ShowMode>ShowMode06</ShowMode>
+    <ShowMode>MultiMode01</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>61</HeartRateLower>
     <HeartRateUpper>62</HeartRateUpper>
-    <ShowMode>ShowMode07</ShowMode>
+    <ShowMode>MultiMode01</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>63</HeartRateLower>
     <HeartRateUpper>64</HeartRateUpper>
-    <ShowMode>ShowMode08</ShowMode>
+    <ShowMode>MultiMode01</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>65</HeartRateLower>

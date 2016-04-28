@@ -38,7 +38,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         private static string _previousShowMode = "";
         private static string _currentmultiModeName = "";
         private static string _previousmultiModeName = "";
-        private static readonly HttpViewModel _httpViewModel = new HttpViewModel
+        private static readonly HttpViewModel HttpViewModel = new HttpViewModel
         {
             HttpPortNumber = "50002",
             HttpRequestType = "Get"
@@ -53,6 +53,8 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             while (ContinueToRead)
             {
                 int heartBeat = GetHeartBeat(count);
+                SignalHub.Clients.All.updateHeartRate(heartBeat.ToString());
+
                 string newCommand = GetCommand(heartBeat);
 
                 if (newCommand != _currentCommand)
@@ -64,9 +66,6 @@ namespace Haptic_Theatre_Vibings_Control.Classes
                     SendCommand(_currentCommand);
                 }
 
-                SignalHub.Clients.All.updateHeartRate(heartBeat.ToString());
-                SignalHub.Clients.All.updateShowMode(_currentShowMode);
-                SignalHub.Clients.All.setModeActive(_currentShowMode);
                 
                 Thread.Sleep(5000);
                 count = count + 5;
@@ -135,8 +134,8 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             foreach (XmlNode node in  nodeList)
             {
                 string ip = node.InnerText;
-                _httpViewModel.HttpRequest = ip + currentCommand;
-                HTTPManager.SendModeCommand(_httpViewModel.HttpRequest);
+                HttpViewModel.HttpRequest = ip + currentCommand;
+                HTTPManager.SendModeCommand(HttpViewModel.HttpRequest);
             }
         }
 
@@ -151,13 +150,16 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             XmlDocument triggersXML =  LoadTriggers();
             _currentShowMode = GetShowModeForThisHeartRate(triggersXML, heartBeat);
 
+            SignalHub.Clients.All.updateShowMode(_currentShowMode);
+            SignalHub.Clients.All.setModeActive(_currentShowMode);
+
             if (_currentShowMode.Contains("MultiMode"))
             {
                 if (_currentShowMode != _previousShowMode)
                 {
                     XmlDocument multiModesXML = LoadMultiModes();
-                    GetShowModesForThisMultiMode(multiModesXML, _currentShowMode);
-                    _previousmultiModeName = _currentShowMode;
+                    SendAllCommandsForThisMultiMode(multiModesXML, _currentShowMode);
+                    _previousShowMode = _currentShowMode;
                 }
             }
             else
@@ -171,7 +173,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         }
 
 
-        static string GetShowModesForThisMultiMode(XmlDocument multiModesXML, string multiModeName)
+        static string SendAllCommandsForThisMultiMode(XmlDocument multiModesXML, string multiModeName)
         {
             XmlDocument commandsXML = LoadCommands();
             XmlNodeList nodeList = multiModesXML.GetElementsByTagName("MultiMode");
