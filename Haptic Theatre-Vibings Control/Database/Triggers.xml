@@ -18,7 +18,7 @@
   <Trigger>
     <HeartRateLower>53</HeartRateLower>
     <HeartRateUpper>54</HeartRateUpper>
-    <ShowMode>ShowMode02</ShowMode>
+    <ShowMode>ShowMode01</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>55</HeartRateLower>
@@ -28,17 +28,17 @@
   <Trigger>
     <HeartRateLower>57</HeartRateLower>
     <HeartRateUpper>58</HeartRateUpper>
-    <ShowMode>MultiMode01</ShowMode>
+    <ShowMode>ShowMode02</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>59</HeartRateLower>
     <HeartRateUpper>60</HeartRateUpper>
-    <ShowMode>MultiMode01</ShowMode>
+    <ShowMode>ShowMode02</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>61</HeartRateLower>
     <HeartRateUpper>62</HeartRateUpper>
-    <ShowMode>MultiMode01</ShowMode>
+    <ShowMode>ShowMode01</ShowMode>
   </Trigger>
   <Trigger>
     <HeartRateLower>63</HeartRateLower>
@@ -64,7 +64,6 @@
     <HeartRateLower>71</HeartRateLower>
     <HeartRateUpper>72</HeartRateUpper>
     <ShowMode>ShowMode12</ShowMode>
-    <!--<ShowMode>MultiMode01</ShowMode>-->
   </Trigger>
   <Trigger>
     <HeartRateLower>73</HeartRateLower>

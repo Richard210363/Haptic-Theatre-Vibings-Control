@@ -50,15 +50,15 @@
   </TimeCode>
   <TimeCode>
     <count>60</count>
-    <HeartRate>53</HeartRate>
+    <HeartRate>54</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>65</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>53</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>70</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>52</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>75</count>
@@ -86,23 +86,23 @@
   </TimeCode>
   <TimeCode>
     <count>105</count>
-    <HeartRate>50</HeartRate>
-  </TimeCode>
-  <TimeCode>
-    <count>110</count>
     <HeartRate>51</HeartRate>
   </TimeCode>
   <TimeCode>
+    <count>110</count>
+    <HeartRate>52</HeartRate>
+  </TimeCode>
+  <TimeCode>
     <count>115</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>53</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>120</count>
-    <HeartRate>50</HeartRate>
+    <HeartRate>54</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>125</count>
-    <HeartRate>52</HeartRate>
+    <HeartRate>53</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>130</count>
@@ -142,7 +142,7 @@
   </TimeCode>
   <TimeCode>
     <count>175</count>
-    <HeartRate>92</HeartRate>
+    <HeartRate>93</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>180</count>
@@ -162,7 +162,7 @@
   </TimeCode>
   <TimeCode>
     <count>200</count>
-    <HeartRate>106</HeartRate>
+    <HeartRate>108</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>205</count>
@@ -174,7 +174,7 @@
   </TimeCode>
   <TimeCode>
     <count>215</count>
-    <HeartRate>108</HeartRate>
+    <HeartRate>110</HeartRate>
   </TimeCode>
   <TimeCode>
     <count>220</count>

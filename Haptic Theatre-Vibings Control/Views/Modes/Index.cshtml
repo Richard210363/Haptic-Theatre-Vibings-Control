@@ -1,0 +1,29 @@
+﻿
+@Html.Hidden("view", @"~\Views\Modes\Index.cshtml")
+
+
+<div class="jumbotron">
+    <h1>Modes</h1>
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="active">Modes</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Set up a show</h2>
+        <p>Set up modes with parameters for a show</p>
+        <p>@Html.ActionLink("Setup modes for shows", "ModeForShows", "Modes", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Mode Design</h2>
+        <p>Design new modes</p>
+        <p>@Html.ActionLink("Mode Design", "ModeDesign", "Modes", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Test Area 1</h2>
+        <p>Stuff goes hare</p>
+        <p>@Html.ActionLink("Do Stuff", "Index", "TestandDevelopment", null, new { @class = "btn btn-default" })</p>
+    </div>
+</div>
