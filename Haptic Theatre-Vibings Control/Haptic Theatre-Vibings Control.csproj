@@ -170,6 +170,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\SensorProcessing.cs" />
     <Compile Include="Classes\SignalHub.cs" />
     <Compile Include="Classes\ModeChangeTriggering.cs" />
     <Compile Include="Global\Global.cs" />
@@ -222,6 +223,10 @@
     <Content Include="Database\MultiModes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Database\Triggers_Aceleration_Sensor.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Database\Triggers.xml">
       <SubType>Designer</SubType>

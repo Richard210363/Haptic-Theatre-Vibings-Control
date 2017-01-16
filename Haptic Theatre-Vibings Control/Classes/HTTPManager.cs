@@ -25,7 +25,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 {
     public static class HTTPManager
     {
-        private static string _receivedUdpMessage = " No Messages";
+        private static string _receivedUdpMessage = "No Messages";
         private static int currentUDPPort = 50002;
         static UdpClient _receiveUdpClient = new UdpClient(currentUDPPort);
 

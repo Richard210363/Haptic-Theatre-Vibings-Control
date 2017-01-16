@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <IPs>
-  <IP>http://192.168.1.11/</IP>
-  <IP>http://192.168.1.12/</IP>
-  <IP>http://192.168.1.13/</IP>  DONE
+  <IP>http://192.168.100.44/</IP>
+  <IP>http://192.168.100.58/</IP>
 </IPs>

@@ -131,7 +131,7 @@
   </ShowMode>
   <ShowMode>
     <Name>ShowMode33</Name>
-    <Command>?mode=012&amp;colour_001=%802040&amp;loopdelay=80&amp;brightness=35&amp;buzzer01=1</Command>
+    <Command>?mode=012&amp;colour_001=%802040&amp;loopdelay=80&amp;brightness=35&amp;buzzer01=0&amp;buzzer02=0</Command>
   </ShowMode>
   <ShowMode>
     <Name>ShowMode34</Name>
@@ -182,5 +182,19 @@
  <ShowMode>
     <Name>ShowMode105</Name>
     <Command>?mode=016&amp;ring=5&amp;brightness=10&amp;colour_001=%23007722</Command>
+  </ShowMode>
+
+
+  <ShowMode>
+    <Name>ShowMode201</Name>
+    <Command>?mode=002&amp;brightness=30&amp;colour_001=%23009933&amp;loopdelay=200</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode202</Name>
+    <Command>?mode=002&amp;brightness=50&amp;colour_001=%23335588&amp;loopdelay=150</Command>
+  </ShowMode>
+  <ShowMode>
+    <Name>ShowMode203</Name>
+    <Command>?mode=011&amp;brightness=70&amp;colour_001=%23881188&amp;loopdelay=100</Command>
   </ShowMode>
 </ShowModes>

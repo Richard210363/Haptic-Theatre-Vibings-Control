@@ -61,7 +61,7 @@
 
 
         <div>
-            @using (Html.BeginForm("SendUdpBroadcast", "TestandDevelopment", FormMethod.Post, new { id = "UDPForm" }))
+            @using (Html.BeginForm("SendUdpBroadcast", "TestandDevelopment", FormMethod.Post, new { id = "UDPCommandForm" }))
             {
                 <h4>Command</h4>
                 @Html.TextBoxFor(m => m.HttpRequest, new { @class = "form-control input-lg" })
@@ -76,22 +76,32 @@
 
     @*Area 3  *@
     <div class="col-md-4">
-
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3>
-                    Vibing Emulator<br />
+                    Sensor Data<br />
                 </h3>
             </div>
         </div>
         <p></p>
+        <h4>Message Received</h4>
+        <div id="receivePaneEmulator">
+            @Html.Partial("_HttpResponse", Model)
+        </div>
+        <div id="UDPSensorForm">
+        <h4>Port Nunber</h4>
+            @Html.TextBoxFor(m => m.HttpPortNumber, new { @class = "form-control input-sm" })
+        <p></p>
         <input type="button" id="EmulatorSubmit" value="Receive UDP Messages" />
-        <p>
-            <h4>Message Received</h4>
-            <div id="receivePaneEmulator">
-                @Html.Partial("_HttpResponse", Model)
-            </div>
-        </p>
+        <p></p>
+        <input type="button" id="EmulatorSubmit_Record" value="Record UDP Messages" />
+            <p>
+                <h4>Activity Note</h4>
+                <div id="activityNote">
+                    @Html.TextAreaFor(m => m.ActivityNote, new { @class = "form-control", rows = "5" })
+                </div>
+            </p>
+    </div>
     </div>
 </div> 
 
@@ -121,7 +131,7 @@
             $.ajax({
                 url: "@Url.Action("SendUdpBroadcast", "TestandDevelopment")",
                 type: "POST",
-            data: $('#UDPForm').serialize(),
+            data: $('#UDPCommandForm').serialize(),
             datatype: "text",
             success: function (data) {}
         });
@@ -147,7 +157,7 @@
             $.ajax({
                 url: "@Url.Action("ReceiveUDPMessage", "TestandDevelopment")",
                 type: "POST",
-                data: $('#UDPForm').serialize(),
+                data: $('#UDPSensorForm :input').serialize(),
                 datatype: "text",
                 success: function (data) {
                     $('#receivePaneEmulator').html(data);
@@ -159,10 +169,50 @@
             $.ajax({
                 url: "@Url.Action("CancelReceiveUDPMessage", "TestandDevelopment")",
                 type: "POST",
-                data: $('#UDPForm').serialize(),
+                data: $('#UDPSensorForm :input').serialize(),
                 datatype: "text",
                 success: function () { }
             });
+        };
+
+
+
+
+
+
+        $('#EmulatorSubmit_Record').click(function (event) {
+            //alert("EmulatorSubmit");
+            if ($(this).val() == "Record UDP Messages") {
+                udpReceiveTimer = setInterval(recordUDPMessages, 100);
+                $('#EmulatorSubmit_Record').attr('value', 'Stop Recording UDP Messages');
+            } else {
+                //alert("stoping");
+                clearInterval(udpReceiveTimer);
+                $('#EmulatorSubmit_Record').attr('value', 'Record UDP Messages');
+                cancelGetUDPMessages();
+            }
+        });
+
+        function recordUDPMessages() {
+            $.ajax({
+                url: "@Url.Action("RecordUDPMessage", "TestandDevelopment")",
+                type: "POST",
+                data: $('#UDPSensorForm :input').serialize(),
+                datatype: "text",
+                success: function (data) {
+                $('#receivePaneEmulator').html(data);
+            }
+        });
+        };
+
+        function cancelGetUDPMessages() {
+            $.ajax({
+                url: "@Url.Action("CancelRecordUDPMessage", "TestandDevelopment")",
+                type: "POST",
+                data: $('#UDPSensorForm :input').serialize(),
+                datatype: "text",
+                success: function () { }
+        });
         };
 
     </script>

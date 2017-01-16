@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Triggers>
+  <Trigger>
+    <SensorValueLower>0</SensorValueLower>
+    <SensorValueUpper>5</SensorValueUpper>
+    <ShowMode>ShowMode201</ShowMode>
+  </Trigger>
+  <Trigger>
+    <SensorValueLower>6</SensorValueLower>
+    <SensorValueUpper>20</SensorValueUpper>
+    <ShowMode>ShowMode202</ShowMode>
+  </Trigger>
+  <Trigger>
+    <SensorValueLower>20</SensorValueLower>
+    <SensorValueUpper>100</SensorValueUpper>
+    <ShowMode>ShowMode203</ShowMode>
+  </Trigger>
+</Triggers>

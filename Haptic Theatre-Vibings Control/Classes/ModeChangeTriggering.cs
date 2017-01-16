@@ -4,7 +4,10 @@
 * \Haptic Theatre-Vibings Control\Haptic Theatre-Vibings Control\Classes\TimeTriggering.cs
 * ****************************************************************************************** 
  DESCRIPTION   : Manages sending mode change events.
-                 Uses time to determine when to send events
+                 
+                 Modes:
+                 1 uses time to determine when to send events from a dummy heartbeat monitor
+                 2 Use sensor data collection to trigger changes
 
                  Uses xml for now.
                  Database in future
@@ -112,6 +115,31 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         #endregion
 
+        #region Sensor triggering
+
+        /*
+            Add method to recieve _averageSensorValue from SensorProcessing
+            Create new Trigger_Sensor.xml
+            That generates a show mode so use code below to get and send command from Command.XML
+            Use ShowMode201 etc
+         */
+
+        public static void SwitchDisplayBySensorValue(Decimal sensorValue)
+        {
+            string newCommand = GetCommand(sensorValue);
+
+            if (newCommand != _currentCommand)
+            {
+                _currentCommand = newCommand;
+
+                SwitchDisplayByModeID(_currentShowMode);
+
+                SendCommand(_currentCommand);
+            }
+        }
+
+        #endregion
+
         #region UI
 
         private static void SwitchDisplayByModeID(string showModeID)
@@ -143,11 +171,16 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         #region Get Commands
 
+        /// <summary>
+        /// Uses dummy heartbeat mode
+        /// </summary>
+        /// <param name="heartBeat"></param>
+        /// <returns></returns>
         static string GetCommand(int heartBeat)
         {
             string command = _currentCommand;
 
-            XmlDocument triggersXML =  LoadTriggers();
+            XmlDocument triggersXML =  LoadHeartBeatTriggers();
             _currentShowMode = GetShowModeForThisHeartRate(triggersXML, heartBeat);
 
             SignalHub.Clients.All.updateShowMode(_currentShowMode);
@@ -169,6 +202,23 @@ namespace Haptic_Theatre_Vibings_Control.Classes
                 command = GetCommandForThisShowMode(commandsXML, _currentShowMode);                
             }
             
+            return command;
+        }
+
+        /// <summary>
+        /// Uses Acc Sensor mode
+        /// </summary>
+        /// <param name="sensorValue"></param>
+        /// <returns></returns>
+        static string GetCommand(Decimal sensorValue)
+        {
+            XmlDocument triggersXML = LoadSensorTriggers();
+            _currentShowMode = GetShowModeForThisSensorValue(triggersXML, sensorValue);
+
+            XmlDocument commandsXML = LoadCommands();
+
+            string command = GetCommandForThisShowMode(commandsXML, _currentShowMode);
+
             return command;
         }
 
@@ -222,6 +272,30 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return showMode;
         }
 
+        static string GetShowModeForThisSensorValue(XmlDocument triggersXML, Decimal sensorValue)
+        {
+            string showMode = "";
+
+            XmlNodeList nodeList = triggersXML.GetElementsByTagName("Trigger");
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                XmlNode heartRateLower = triggersXML.GetElementsByTagName("SensorValueLower")[i];
+
+                if (sensorValue >= Convert.ToInt32(heartRateLower.InnerXml))
+                {
+                    XmlNode heartRateUpper = triggersXML.GetElementsByTagName("SensorValueUpper")[i];
+                    if (sensorValue <= Convert.ToInt32(heartRateUpper.InnerXml))
+                    {
+                        XmlElement ShowMode = (XmlElement)triggersXML.GetElementsByTagName("ShowMode")[i];
+                        showMode = ShowMode.InnerText;
+                        break;
+                    }
+
+                }
+            }
+            return showMode;
+        }
+
         static string GetCommandForThisShowMode(XmlDocument triggersXML, string showModeName)
         {
             string command = "";
@@ -268,7 +342,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return xdoc;
         }
 
-        private static XmlDocument LoadTriggers()
+        private static XmlDocument LoadHeartBeatTriggers()
         {
             XmlDocument xdoc = new XmlDocument();
             var dataFile = HostingEnvironment.MapPath("~/Database/Triggers.xml");
@@ -278,10 +352,24 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return xdoc;
         }
 
+        private static XmlDocument LoadSensorTriggers()
+        {
+            XmlDocument xdoc = new XmlDocument();
+            var dataFile =
+                @"E:\Data\My Documents\Dropbox\Projects\Haptic Theatre\Haptic Controller\Haptic-Theatre-Vibings-Control\Haptic Theatre-Vibings Control\bin\Database/Triggers_Aceleration_Sensor.xml";
+            //var dataFile = HostingEnvironment.MapPath("~/Database/Triggers_Aceleration_Sensor.xml");
+            FileStream fileStream = new FileStream(dataFile, FileMode.Open);
+            xdoc.Load(fileStream);
+            fileStream.Close();
+            return xdoc;
+        }
+
         private static XmlDocument LoadCommands()
         {
             XmlDocument xdoc = new XmlDocument();
-            var dataFile = HostingEnvironment.MapPath("~/Database/Commands.xml");
+            var dataFile =
+                @"E:\Data\My Documents\Dropbox\Projects\Haptic Theatre\Haptic Controller\Haptic-Theatre-Vibings-Control\Haptic Theatre-Vibings Control\bin\Database/Commands.xml";
+            //var dataFile = HostingEnvironment.MapPath("~/Database/Commands.xml");
             FileStream fileStream = new FileStream(dataFile, FileMode.Open);
             xdoc.Load(fileStream);
             fileStream.Close();
@@ -291,7 +379,9 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         private static XmlDocument LoadIPs()
         {
             XmlDocument xdoc = new XmlDocument();
-            var dataFile = HostingEnvironment.MapPath("~/Database/IPs.xml");
+            //var dataFile = HostingEnvironment.MapPath("~/Database/IPs.xml");
+            var dataFile = @"E:\Data\My Documents\Dropbox\Projects\Haptic Theatre\Haptic Controller\Haptic-Theatre-Vibings-Control\Haptic Theatre-Vibings Control\bin\Database/IPs.xml";
+            //var dataFile = HostingEnvironment.MapPath("~/Database/IPs.xml");
             FileStream fileStream = new FileStream(dataFile, FileMode.Open);
             xdoc.Load(fileStream);
             fileStream.Close();
