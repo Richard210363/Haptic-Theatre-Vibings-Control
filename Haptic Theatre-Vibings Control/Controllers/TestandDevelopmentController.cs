@@ -38,11 +38,13 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         /// <returns></returns>
         public ActionResult HttpDevelopment()
         {
-            HttpViewModel httpViewModel = new HttpViewModel();
+            HttpViewModel httpViewModel = new HttpViewModel
+            {
+                HttpRequestType = HttpRequestType.Get,
+                HttpPortNumber = "50002"
+            };
 
             //set defaults
-            httpViewModel.HttpRequestType = HttpRequestType.Get;
-            httpViewModel.HttpPortNumber = "50002";
             return View(httpViewModel);
         }
 
@@ -99,9 +101,7 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         {
             if (httpViewModel == null) throw new ArgumentNullException(nameof(HttpViewModel));
 
-            string response = "";
-
-            response = HTTPManager.SendUdpBroadcast(httpViewModel.HttpRequest, httpViewModel.HttpPortNumber);
+            var response = HTTPManager.SendUdpBroadcast(httpViewModel.HttpRequest, httpViewModel.HttpPortNumber);
 
             httpViewModel.HttpResponse = response;
 
@@ -113,19 +113,12 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
         /// Receive a Udp message
         /// </summary>
         /// <returns></returns>
+        /// <remarks>50002</remarks>
         public ActionResult ReceiveUDPMessage(HttpViewModel httpViewModel)
         {
-            string response = "";
+            httpViewModel.HttpResponse = HTTPManager.ReceiveUdpBroadcast(httpViewModel.HttpPortNumber);
 
-            // response = HTTPManager.ReceiveUdpBroadcast(httpViewModel.HttpPortNumber);
-
-            response = HTTPManager.ReceiveUdpBroadcast("50002");
-
-            httpViewModel.HttpResponse = response;
-
-            SensorProcessing.ProcessData(response);
-
-            httpViewModel.HttpResponse = "your mum";
+            SensorProcessing.ProcessData(httpViewModel.HttpResponse);
 
             return PartialView("_HttpResponse", httpViewModel);
         }
@@ -148,20 +141,15 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
 
 
         /// <summary>
-        /// Receive a Udp message
+        /// Record a Udp message
         /// </summary>
         /// <returns></returns>
+        /// <remarks>50002</remarks>
         public ActionResult RecordUDPMessage(HttpViewModel httpViewModel)
         {
-            string response = "";
+            httpViewModel.HttpResponse = HTTPManager.ReceiveUdpBroadcast(httpViewModel.HttpPortNumber);
 
-            // response = HTTPManager.ReceiveUdpBroadcast(httpViewModel.HttpPortNumber);
-
-            response = HTTPManager.ReceiveUdpBroadcast("50002");
-
-            httpViewModel.HttpResponse = response;
-
-            SensorProcessing.ProcessData(response);
+            SensorProcessing.RecordData(httpViewModel);
 
             return PartialView("_HttpResponse", httpViewModel);
         }
@@ -178,6 +166,8 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
             HTTPManager.CancelUdpBroadcast();
 
             httpViewModel.HttpResponse = response;
+
+            SensorProcessing.CancelRecordData();
 
             return PartialView("_HttpResponse", httpViewModel);  //Note This is not used in the view we just need it because ActionResults demand a Return
         }

@@ -3,7 +3,9 @@
 /********************************************************************************************
 * \Haptic Theatre-Vibings Control\Haptic Theatre-Vibings Control\Classes\SensorProcessing.cs
 * ****************************************************************************************** 
- DESCRIPTION   : Collects sensor data and calls to change modes
+ DESCRIPTION   : Collects sensor data and either
+                    calls to change modes
+                    records the data 
 
  REVISION HISTORY: 
 
@@ -14,26 +16,21 @@
 
 #endregion
 
-
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.Ajax.Utilities;
+using Haptic_Theatre_Vibings_Control.Models;
 
 namespace Haptic_Theatre_Vibings_Control.Classes
 {
 
     public static class SensorProcessing
     {
-        private static int _dataPointCount=0;
-        private static Decimal _summedSensorValue = 0;
-        private static Decimal _averageSensorValue = 0;
+        private static int _dataPointCount;
+        private static decimal _summedSensorValue;
+        private static decimal _averageSensorValue;
 
         public static void ProcessData(string sensorData)
         {
-            Decimal sensorValue = ConvertToNumber(sensorData);
+            decimal sensorValue = ConvertToNumber(sensorData);
             _summedSensorValue += sensorValue;
             _dataPointCount++;
 
@@ -50,10 +47,25 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         }
 
-        private static Decimal ConvertToNumber(string sensorData)
+        public static void RecordData(HttpViewModel httpViewModel)
         {
-            string[] dataXYZ = new string[3];
-            dataXYZ = sensorData.Split(',');
+
+            if (FileWriterManager.File== null)
+            {
+                FileWriterManager.OpenFileStream();
+            }
+
+            FileWriterManager.WriteData(httpViewModel);
+        }
+
+        internal static void CancelRecordData()
+        {
+            FileWriterManager.CloseFileStream();
+        }
+
+        private static decimal ConvertToNumber(string sensorData)
+        {
+            var dataXYZ = sensorData.Split(',');
 
             if (dataXYZ[0] == "No Messages" || dataXYZ[0] == "")
             {
@@ -62,15 +74,40 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
             try
             {
-                Decimal x = Math.Abs(Convert.ToDecimal(dataXYZ[0]));
-                Decimal y = Math.Abs(Convert.ToDecimal(dataXYZ[1]));
-                Decimal z = Math.Abs(Convert.ToDecimal(dataXYZ[2]));
+                decimal x = Math.Abs(Convert.ToDecimal(dataXYZ[0]));
+                decimal y = Math.Abs(Convert.ToDecimal(dataXYZ[1]));
+                decimal z = Math.Abs(Convert.ToDecimal(dataXYZ[2]));
 
                 return x + y + z;
             }
             catch (Exception)
             {
                 return 0;
+            }
+        }
+
+        private static SensorData ConvertToSensorData(string sensorInput)
+        {
+            var dataXYZ = sensorInput.Split(',');
+
+            if (dataXYZ[0] == "No Messages" || dataXYZ[0] == "")
+            {
+                return new SensorData(0, 0, 0);
+            }
+
+            try
+            {
+                decimal x = Math.Abs(Convert.ToDecimal(dataXYZ[0]));
+                decimal y = Math.Abs(Convert.ToDecimal(dataXYZ[1]));
+                decimal z = Math.Abs(Convert.ToDecimal(dataXYZ[2]));
+
+                SensorData sensorData = new SensorData(x,y,z);
+
+                return sensorData;
+            }
+            catch (Exception)
+            {
+                return new SensorData(0, 0, 0);
             }
         }
     }
