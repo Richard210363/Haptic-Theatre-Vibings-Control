@@ -189,7 +189,7 @@
                 //alert("stoping");
                 clearInterval(udpReceiveTimer);
                 $('#EmulatorSubmit_Record').attr('value', 'Record UDP Messages');
-                cancelGetUDPMessages();
+                cancelRecordUDPMessage();
             }
         });
 
@@ -205,7 +205,7 @@
         });
         };
 
-        function cancelGetUDPMessages() {
+        function cancelRecordUDPMessage() {
             $.ajax({
                 url: "@Url.Action("CancelRecordUDPMessage", "TestandDevelopment")",
                 type: "POST",

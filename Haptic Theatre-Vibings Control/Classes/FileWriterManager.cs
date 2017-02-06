@@ -34,7 +34,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("Activity,");
             stringBuilder.Append("X,");
-            stringBuilder.Append("y,");
+            stringBuilder.Append("Y,");
             stringBuilder.Append("Z,");
             stringBuilder.AppendLine("DateTime");
 
@@ -52,8 +52,13 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         internal static void CloseFileStream()
         {
-            File.Flush();
-            File.Close();
+            try
+            {
+                File.Flush();
+                File.Close();
+            }
+            catch
+            { }
         }
 
         public static void WriteData(HttpViewModel httpViewModel)
@@ -63,7 +68,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             stringBuilder.Append(",");
             stringBuilder.Append(httpViewModel.HttpResponse);
             stringBuilder.Append(",,,");
-            stringBuilder.AppendLine(DateTime.Now.ToString("O"));
+            stringBuilder.AppendLine(DateTime.Now.ToString("hh:mm:ss.ffff"));
 
             try
             {
