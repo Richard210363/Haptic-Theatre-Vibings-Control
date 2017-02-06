@@ -29,7 +29,8 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         public static void OpenFileStream()
         {
-            File = new StreamWriter(@"c:/Haptic_Sensor_data.csv", true);
+            string databasePath = AppDomain.CurrentDomain.BaseDirectory + @"\Database";
+            File = new StreamWriter(databasePath + @"\Haptic_Sensor_data.csv", true);
 
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("Activity,");

@@ -355,9 +355,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         private static XmlDocument LoadSensorTriggers()
         {
             XmlDocument xdoc = new XmlDocument();
-            var dataFile =
-                @"E:\Data\My Documents\Dropbox\Projects\Haptic Theatre\Haptic Controller\Haptic-Theatre-Vibings-Control\Haptic Theatre-Vibings Control\bin\Database/Triggers_Aceleration_Sensor.xml";
-            //var dataFile = HostingEnvironment.MapPath("~/Database/Triggers_Aceleration_Sensor.xml");
+            var dataFile = HostingEnvironment.MapPath("~/Database/Triggers_Aceleration_Sensor.xml");
             FileStream fileStream = new FileStream(dataFile, FileMode.Open);
             xdoc.Load(fileStream);
             fileStream.Close();
@@ -367,9 +365,8 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         private static XmlDocument LoadCommands()
         {
             XmlDocument xdoc = new XmlDocument();
-            var dataFile =
-                @"E:\Data\My Documents\Dropbox\Projects\Haptic Theatre\Haptic Controller\Haptic-Theatre-Vibings-Control\Haptic Theatre-Vibings Control\bin\Database/Commands.xml";
-            //var dataFile = HostingEnvironment.MapPath("~/Database/Commands.xml");
+            //var dataFile = @"E:\Data\My Documents\Dropbox\Projects\Haptic Theatre\Haptic Controller\Haptic-Theatre-Vibings-Control\Haptic Theatre-Vibings Control\bin\Database/Commands.xml";
+            var dataFile = HostingEnvironment.MapPath("~/Database/Commands.xml");
             FileStream fileStream = new FileStream(dataFile, FileMode.Open);
             xdoc.Load(fileStream);
             fileStream.Close();
@@ -379,9 +376,8 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         private static XmlDocument LoadIPs()
         {
             XmlDocument xdoc = new XmlDocument();
-            //var dataFile = HostingEnvironment.MapPath("~/Database/IPs.xml");
-            var dataFile = @"E:\Data\My Documents\Dropbox\Projects\Haptic Theatre\Haptic Controller\Haptic-Theatre-Vibings-Control\Haptic Theatre-Vibings Control\bin\Database/IPs.xml";
-            //var dataFile = HostingEnvironment.MapPath("~/Database/IPs.xml");
+
+            var dataFile = HostingEnvironment.MapPath("~/Database/IPs.xml");
             FileStream fileStream = new FileStream(dataFile, FileMode.Open);
             xdoc.Load(fileStream);
             fileStream.Close();
