@@ -142,6 +142,7 @@
 
         $('#EmulatorSubmit').click(function (event) {
             //alert("EmulatorSubmit");
+            debugger;
             if ($(this).val() == "Receive UDP Messages") {
                 udpReceiveTimer = setInterval(getUDPMessages, 100);
                 $('#EmulatorSubmit').attr('value', 'Stop Receiving UDP Messages');
