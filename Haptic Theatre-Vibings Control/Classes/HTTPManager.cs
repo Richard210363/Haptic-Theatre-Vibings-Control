@@ -29,6 +29,8 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         private static int currentUDPPort = 50002;
         static UdpClient _receiveUdpClient = new UdpClient(currentUDPPort);
 
+        #region TCP Send
+
         /// <summary>
         /// Send a simple Get request
         /// </summary>
@@ -64,9 +66,13 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             return response;
         }
 
+        #endregion
+
+
+        #region  UDP
 
         /// <summary>
-        /// Broadcast a UDP message
+        /// Broadcast a UDP message - Used to test UDP receiver
         /// </summary>
         /// <param name="httpRequest">Content of message</param>
         /// <param name="httpPortNumber">Port to use</param>
@@ -84,7 +90,6 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             string response = "Broadcast: " + httpRequest;
 
             return response;
-
         }
 
         /// <summary>
@@ -97,6 +102,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             if (httpPortNumber != currentUDPPort.ToString() || _receiveUdpClient.Client == null)
             {
                 _receiveUdpClient.Close();
+                _receiveUdpClient.Dispose();
                 _receiveUdpClient = new UdpClient(Convert.ToInt32(httpPortNumber));
 
                 currentUDPPort = Convert.ToInt32(httpPortNumber);
@@ -125,6 +131,14 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             {
                 IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 8000);
 
+                if (_receiveUdpClient.Client == null)
+                {
+                    _receiveUdpClient.Close();
+                    _receiveUdpClient.Dispose();
+                    _receiveUdpClient = new UdpClient(Convert.ToInt32(currentUDPPort));
+                }
+
+
                 if (_receiveUdpClient.Client != null)
                 {
                     byte[] received = _receiveUdpClient.EndReceive(res, ref RemoteIpEndPoint);
@@ -149,5 +163,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
         {
             _receiveUdpClient.Close();
         }
+
+        #endregion
     }
 }
