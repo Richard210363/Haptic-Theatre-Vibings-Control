@@ -64,6 +64,11 @@ namespace Haptic_Theatre_Vibings_Control.Classes
 
         public static void WriteData(HttpViewModel httpViewModel)
         {
+            if (File.BaseStream == null)
+            {
+                OpenFileStream();
+            }
+
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(httpViewModel.ActivityNote);
             stringBuilder.Append(",");
