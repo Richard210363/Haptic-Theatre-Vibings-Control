@@ -73,7 +73,7 @@ namespace Haptic_Theatre_Vibings_Control.Classes
             stringBuilder.Append(httpViewModel.ActivityNote);
             stringBuilder.Append(",");
             stringBuilder.Append(httpViewModel.HttpResponse);
-            stringBuilder.Append(",,,");
+            stringBuilder.Append(",");
             stringBuilder.AppendLine(DateTime.Now.ToString("hh:mm:ss.ffff"));
 
             try
