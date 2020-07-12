@@ -52,7 +52,7 @@ namespace Haptic_Theatre_Vibings_Control.Controllers
             }
         }
 
-        //
+        //This text is just to test GitHub
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
